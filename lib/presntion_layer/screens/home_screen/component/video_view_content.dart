@@ -1,5 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../models/video_model.dart';
@@ -20,7 +21,11 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
     controller = VideoPlayerController.asset(widget.videoModel.url);
     await Future.wait([controller.initialize()]);
     controller.initialize().then((_) => setState(() {}));
-    chewieController = ChewieController(videoPlayerController: controller);
+    chewieController = ChewieController(
+        videoPlayerController: controller,
+        autoInitialize: true,
+        looping: false,
+        autoPlay: false);
   }
 
   @override
@@ -41,7 +46,9 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-          height: 300,
+          margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 3.w),
+          height: 200.h,
+          color: Colors.black,
           child: chewieController != null &&
                   chewieController!.videoPlayerController.value.isInitialized
               ? Chewie(controller: chewieController!)

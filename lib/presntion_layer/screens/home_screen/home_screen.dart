@@ -71,6 +71,91 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Container(
+                    margin: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(10),
+                    height: 169.h,
+                    width: 380.w,
+                    color: const Color(0xFFFEF2F7),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20.r),
+                          child: Image.asset(
+                            ImageRoot.homeSliderTwo,
+                            fit: BoxFit.cover,
+                            width: 90.w,
+                            height: 90.h,
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'تخفيضات الجمعة البيضاء',
+                                style: bodyStyle.copyWith(
+                                    fontSize: 14.sp, color: AppColor.pinkColor),
+                              ),
+                              Text(
+                                'أحصل علي خصومات رائعه من سنتر ديفا \n بمناسبة\nالجمعة البيضاء من شهر نوفمبر ',
+                                style: bodyStyle.copyWith(
+                                    fontSize: 11.sp, color: AppColor.greyColor),
+                                textAlign: TextAlign.right,
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.price_check,
+                                          color: AppColor.purpleColor,
+                                        ),
+                                        Text(
+                                          '3200',
+                                          style: bodyStyle4,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.favorite,
+                                          color: AppColor.purpleColor,
+                                        ),
+                                        Text(
+                                          '50',
+                                          style: bodyStyle4,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.share,
+                                          color: AppColor.purpleColor,
+                                        ),
+                                        Text(
+                                          'مشاركة',
+                                          style: bodyStyle4,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: SvgPicture.asset(
@@ -151,56 +236,72 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: SvgPicture.asset(
                     'assets/svg/ic_instagram.svg',
-                    height: 70,
+                    height: 45.h,
                   ),
                 ),
-                Card(
-                  elevation: 5,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: AssetImage(ImageRoot.divaLogo),
-                            radius: 30,
-                            backgroundColor: Colors.transparent,
-                          ),
-                          SizedBox(
-                            width: 25,
-                          ),
-                          Expanded(
-                            child: Column(
+                SizedBox(
+                  height: 10.h,
+                ),
+                Container(
+                  height: 400.h,
+                  child: Card(
+                    elevation: 4,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: AssetImage(ImageRoot.divaLogo),
+                              radius: 30,
+                              backgroundColor: Colors.transparent,
+                            ),
+                            SizedBox(
+                              width: 25,
+                            ),
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('أتيلية ديفا_Diva Wedding Dress '),
                                 TextKota(),
                               ],
                             ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 300.h,
+                          child: ViewGrid(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return InstaView(
+                                instagramView: InstagramList[index],
+                              );
+                            },
+                            crossAxisCount: 2,
+                            itemCount: 2,
+                            childAspectRatio: 0.40,
                           ),
-                        ],
-                      ),
-                      ViewGrid(
-                        itemBuilder: (BuildContext context, int index) {
-                          return InstaView(
-                            instagramView: InstagramList[index],
-                          );
-                        },
-                        crossAxisCount: 2,
-                        itemCount: 2,
-                        childAspectRatio: 0.90,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                        },
-                        child: Text('SeeMore...'),
-                      ),
-                    ],
+                        ),
+                        // SizedBox(height: 20.h,),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
+                          },
+                          child: Text(
+                            'عرض الكل ',
+                            style: bodyStyle.copyWith(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const Padding(
@@ -211,7 +312,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 500.h,
+                  height: 460.h,
                   child: ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -239,30 +340,6 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 100,
-                ),
-                // Container(
-                //   margin: EdgeInsets.all(10),
-                //   height: MediaQuery.of(context).size.height / 2,
-                //   decoration: BoxDecoration(
-                //       border: Border.all(color: Color(0xFF4267B2))),
-                //   child: WepViewContent(
-                //       url:
-                //           'https://m.facebook.com/profile.php?id=100044305635468'),
-                // Container(child: WepViewContent())
-                //),
-                // SizedBox(
-                //   height: 100,
-                // ),
-                // Container(
-                //   margin: EdgeInsets.all(10),
-                //   height: MediaQuery.of(context).size.height / 2,
-                //   decoration: BoxDecoration(
-                //       border: Border.all(color: Color(0xFF4267B2))),
-                //   child: WepViewContent(url: 'https://www.amazon.com/'),
-                //   // Container(child: WepViewContent())
-                // ),
               ],
             ),
           ),

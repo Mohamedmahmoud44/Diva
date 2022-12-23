@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
-          color: Colors.grey,
+          color: Colors.black,
         ),
         title: SvgPicture.asset(
           'assets/svg/ic_instagram.svg',
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         ),
         elevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

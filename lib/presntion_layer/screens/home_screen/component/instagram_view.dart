@@ -12,31 +12,21 @@ class InstaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          // border: Border(
-          //   top: BorderSide(color: Color(0xFF405DE6)),
-          //   right: BorderSide(color: Color(0xFFE1306C)),
-          //   bottom: BorderSide(color: Color(0xFFF56040)),
-          //   left: BorderSide(color: Color(0xFFC13584)),
-          // ),
-          ),
-      // padding: EdgeInsets.all(5),
-      // height: 231.05,
-      // width: 200,
+      decoration: BoxDecoration(),
       child: Column(
         children: [
           SizedBox(
-            height: 20,
+            height: 5.h,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                width: 300,
+                width: 300.w,
                 child: Text(
                   instagramView.title,
-                  style: TextStyle(fontSize: 13, color: Colors.black),
+                  style: TextStyle(fontSize: 13.sp, color: Colors.black),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
@@ -46,11 +36,13 @@ class InstaView extends StatelessWidget {
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
-                child: Image.asset(
-                  instagramView.urlImage,
-                  width: 250,
-                  height: 250,
-                  fit: BoxFit.cover,
+                child: SizedBox(
+                  width: 280.w,
+                  height: 230.r,
+                  child: Image.asset(
+                    instagramView.urlImage,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
