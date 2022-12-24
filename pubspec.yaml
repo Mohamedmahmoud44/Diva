@@ -89,7 +89,6 @@ flutter:
     - assets/dress_images/
     - assets/videos/
     - assets/svg/
-    - assets/postImgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

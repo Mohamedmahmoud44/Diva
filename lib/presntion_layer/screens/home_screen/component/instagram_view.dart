@@ -32,12 +32,12 @@ class InstaView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
                 child: SizedBox(
-                  width: 280.w,
+                  width: 280.r,
                   height: 230.r,
                   child: Image.asset(
                     instagramView.urlImage,

@@ -21,7 +21,7 @@ class AboutUs extends StatelessWidget {
           color: AppColor.pinkColor,
         ),
         SizedBox(
-          width: 330.w,
+          width: MediaQuery.of(context).size.width / 1.29,
           child: Text(
             aboutUsModel.title!,
             style: bodyStyle3.copyWith(

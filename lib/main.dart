@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,10 +9,13 @@ import 'cubit/home_page_cubit.dart';
 import 'presntion_layer/screens/splash/spalsh_screen.dart';
 
 void main() => runApp(
-      // DevicePreview(
-      //   enabled: !kReleaseMode,
-      //   builder: (context)
-      MyApp(), // Wrap your app
+      DevicePreview(
+          enabled: !kReleaseMode,
+          builder: (context) {
+            return MyApp();
+          }
+          // Wrap your app
+          ),
     );
 
 class MyApp extends StatelessWidget {

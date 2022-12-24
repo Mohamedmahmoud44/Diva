@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../models/posts.dart';
-import 'widgets/IURPostCard.dart';
+import 'component/IURPostCard.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

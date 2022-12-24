@@ -51,24 +51,25 @@ class ArticleScreenView extends StatelessWidget {
                   children: [
                     const TextKota(),
                     TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.comment_rounded,
-                              color: Color(0xFF707070),
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.comment_rounded,
+                            color: Color(0xFF707070),
+                          ),
+                          Text(
+                            'لا توجد تعليقات ',
+                            style: TextStyle(
+                              fontSize: 11.sp,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF707070),
                             ),
-                            Text(
-                              'لا توجد تعليقات ',
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF707070),
-                              ),
-                            )
-                          ],
-                        ))
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
               )

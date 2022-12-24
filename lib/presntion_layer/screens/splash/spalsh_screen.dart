@@ -7,7 +7,7 @@ import '../on_boarding/on_boarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
-
+//miichel a5d el ma4ro3 bta3 devaaa we a7na hnrkb el4l7at
   @override
   Widget build(BuildContext context) {
     return Scaffold(
