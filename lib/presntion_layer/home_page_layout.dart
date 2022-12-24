@@ -105,6 +105,7 @@ class HomePageLayoutScreen extends StatelessWidget {
               child: BottomNavigationBar(
                 items: cubit.bottomNavBarItems,
                 selectedItemColor: AppColor.pinkColor,
+                unselectedItemColor: AppColor.greyColor,
                 currentIndex: cubit.currentIndex,
                 showSelectedLabels: true,
                 showUnselectedLabels: true,

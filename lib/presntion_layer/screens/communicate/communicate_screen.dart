@@ -104,9 +104,9 @@ class CommunicateScreen extends StatelessWidget {
                               fontSize: 15.sp, color: const Color(0xff4A4B4D)),
                         ),
                         Text(
-                          'mohamedmahmoud21191@gmail.com',
+                          'Diva@gmail.com',
                           style: TextStyle(
-                              fontSize: 10.sp, color: const Color(0xff707070)),
+                            fontSize: 10.sp, color: const Color(0xff707070),),
                         ),
                       ],
                     ),
@@ -119,7 +119,7 @@ class CommunicateScreen extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.restore_rounded,
-                      size: 30.sp,
+                      size: 30,
                       color: const Color(0xff4A4B4D),
                     ),
                     SizedBox(
@@ -138,7 +138,7 @@ class CommunicateScreen extends StatelessWidget {
                             Text(
                               'يوميا من 12:00 م الى 1:00 ص',
                               style: TextStyle(
-                                  fontSize: 10.sp,
+                                  fontSize: 8.sp,
                                   color: const Color(0xff707070)),
                             ),
                             SizedBox(
@@ -147,7 +147,7 @@ class CommunicateScreen extends StatelessWidget {
                             Text(
                               'يوم الجمعه من 3:00 م الى 1:00 ص',
                               style: TextStyle(
-                                  fontSize: 10.sp,
+                                  fontSize: 8.sp,
                                   color: const Color(0xff707070)),
                             ),
                           ],

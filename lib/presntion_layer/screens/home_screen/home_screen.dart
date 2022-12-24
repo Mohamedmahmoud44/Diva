@@ -250,7 +250,7 @@ class HomePage extends StatelessWidget {
                   height: 10.h,
                 ),
                 Container(
-                  height: 400.h,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   child: Card(
                     elevation: 4,
                     child: Column(
@@ -263,7 +263,7 @@ class HomePage extends StatelessWidget {
                               backgroundColor: Colors.transparent,
                             ),
                             SizedBox(
-                              width: 25,
+                              width: 25.w,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -289,15 +289,16 @@ class HomePage extends StatelessWidget {
                             childAspectRatio: 0.40,
                           ),
                         ),
-                        // SizedBox(height: 20.h,),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
-                          },
-                          child: Text(
-                            'عرض الكل ',
-                            style: bodyStyle.copyWith(color: Colors.black),
+                        Flexible(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                            },
+                            child: Text(
+                              'عرض الكل ',
+                              style: bodyStyle.copyWith(color: Colors.black),
+                            ),
                           ),
                         ),
                       ],
@@ -323,18 +324,19 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'احدث\n اخبار الموضة والجمال ',
+                  'احدث اخبار\n الموضة والجمال ',
                   style: bodyStyle3.copyWith(fontSize: 24.sp),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 20.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
                   height: 380.h,
                   width: 390.w,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: const [
                       ArticleView(
-                        title: 'طريقة اختيار لون فستان الزفاف \n  مناسب للصيف ',
+                        title: 'طريقة اختيار لون فستان الزفاف   مناسب للصيف ',
                         image: ImageRoot.homePageScreenThree,
                       )
                     ],
