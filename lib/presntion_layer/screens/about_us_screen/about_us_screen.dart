@@ -4,9 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/app_color.dart';
 import '../../../core/app_style.dart';
 import '../../../models/about_us_model.dart';
-import '../../widgets/about_us/about_us.dart';
 import '../../widgets/components/about_us.dart';
-import '../../widgets/custom_app_bar.dart';
+import 'components/about_us.dart';
 
 class ABoutUsScreen extends StatelessWidget {
   const ABoutUsScreen({
@@ -16,19 +15,6 @@ class ABoutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        appBar: AppBar(),
-        title: 'من نحن',
-        leadingIcon: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-        ),
-      ),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: SingleChildScrollView(
@@ -36,7 +22,7 @@ class ABoutUsScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'مركز تجميل \n عرائس وميك اب ',
+                'مركز تجميل عرائس وميك اب ',
                 style: bodyStyle3,
               ),
               ListView.separated(
@@ -56,7 +42,7 @@ class ABoutUsScreen extends StatelessWidget {
                 height: 8.h,
               ),
               Text(
-                'ماذا \n نقدم من خدمات ',
+                'ماذا نقدم من خدمات ',
                 style: bodyStyle3.copyWith(color: AppColor.pinkColor),
               ),
               ListView.builder(

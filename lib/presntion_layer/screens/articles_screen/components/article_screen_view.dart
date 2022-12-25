@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../models/article_model.dart';
-import '../../screens/article_details_screen/article_details_screen.dart';
-import '../text_kota.dart';
+import '../../../../models/article_model.dart';
+import '../../../widgets/text_kota.dart';
+import '../../article_details_screen/article_details_screen.dart';
 
 class ArticleScreenView extends StatelessWidget {
   final ArticleModel articleModel;

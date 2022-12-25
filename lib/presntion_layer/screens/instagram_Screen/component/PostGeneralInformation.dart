@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/icons.dart';
 import '../../../../models/IURPost_model.dart';
 
 class PostGeneralInformation extends StatelessWidget {
@@ -43,34 +42,17 @@ class PostGeneralInformation extends StatelessWidget {
                       label: "author name",
                       child: Text(
                         post.authorName,
-                        style: Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ),
                     Semantics(
                       label: "time of publish differance from now",
                       child: Text(
                         "${DateTime.now().difference(post.timeOfPublish).inMinutes} min ago",
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                   ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SvgIconsHelper.fromSvg(
-                  svgPath: "assets/icons/send.svg",
-                  semanticLabel: "send icon",
-                  size: 20,
-                  color: Theme.of(context).primaryColor.withOpacity(.6),
-                ),
-                const SizedBox(width: 10),
-                SvgIconsHelper.fromSvg(
-                  svgPath: "assets/icons/items.svg",
-                  semanticLabel: "items icon",
-                  size: 15,
-                  color: Theme.of(context).primaryColor.withOpacity(.6),
                 ),
               ],
             ),

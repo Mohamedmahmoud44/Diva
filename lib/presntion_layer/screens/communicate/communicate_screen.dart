@@ -106,7 +106,9 @@ class CommunicateScreen extends StatelessWidget {
                         Text(
                           'Diva@gmail.com',
                           style: TextStyle(
-                            fontSize: 10.sp, color: const Color(0xff707070),),
+                            fontSize: 10.sp,
+                            color: const Color(0xff707070),
+                          ),
                         ),
                       ],
                     ),
@@ -186,54 +188,48 @@ class CommunicateScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                // SizedBox(
-                //   height: 40.h,
-                // ),
-                SizedBox(
-                  // width: 318.w,
-                  // height: 190.h,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Image.asset(
-                        'assets/images/map.png',
-                        fit: BoxFit.cover,
-                        // width: 330,
-                        // height: 203,
-                      ),
-                      Container(
-                        width: 186.r,
-                        height: 32.r,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.r),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.place_sharp,
-                              color: Color(0xffE50263),
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            const Text(
-                              'المحله الكبرى',
-                              style: TextStyle(color: Color(0xff959DAD)),
-                            ),
-                            const Spacer(),
-                            const Icon(
-                              Icons.close,
-                            ),
-                          ],
+                Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    SizedBox(
+                      height: 350.r,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.asset(
+                          'assets/images/map.png',
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      width: 186.r,
+                      height: 32.r,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.r),
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.place_sharp,
+                            color: Color(0xffE50263),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          const Text(
+                            'المحله الكبرى',
+                            style: TextStyle(color: Color(0xff959DAD)),
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.close,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                // SizedBox(
-                //   height: 40.h,
-                // ),
               ],
             ),
           ),

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/icon_root.dart';
+import '../presntion_layer/screens/about_us_screen/about_us_screen.dart';
 import '../presntion_layer/screens/articles_screen/atricels_screen.dart';
-import '../presntion_layer/screens/category_screen/category_screen.dart';
 import '../presntion_layer/screens/home_screen/home_screen.dart';
-import '../presntion_layer/screens/home_screen_two.dart';
 import 'home_page_states.dart';
 
 class HomePageCubit extends Cubit<HomePageStates> {
@@ -17,23 +16,22 @@ class HomePageCubit extends Cubit<HomePageStates> {
   //ChangeScreenByBottomNavigationBar
   int currentIndex = 1;
   List<String> titleList = [
-    'الفساتين',
+    'من نحن ',
     'الرئيسية',
     'المقالات',
-    'الرئيسية',
   ];
   List<Widget> bottomNavScreens = [
-    const CategoryScreen(),
+    const ABoutUsScreen(),
     HomePage(),
     const ArticlesScreen(),
-    HomeScreenTwo()
   ];
   List<BottomNavigationBarItem> bottomNavBarItems = [
     const BottomNavigationBarItem(
-        icon: ImageIcon(
-          AssetImage(IconRoot.dressIcon),
+        icon: const ImageIcon(
+          AssetImage(IconRoot.infoIcon),
+          // color: AppColor.lightBlackColor,
         ),
-        label: 'المنتجات'),
+        label: 'من نحن '),
     const BottomNavigationBarItem(
         icon: ImageIcon(
           AssetImage(IconRoot.homeIcon),
@@ -44,8 +42,6 @@ class HomePageCubit extends Cubit<HomePageStates> {
           AssetImage(IconRoot.articleIcon),
         ),
         label: 'المقالات'),
-    const BottomNavigationBarItem(
-        icon: Icon(Icons.home_work_rounded), label: 'الرئيسية'),
   ];
 
   void changeBottomNavBarIndex(int index) {

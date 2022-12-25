@@ -24,11 +24,6 @@ List<IURPostModel> postsSamples = [
 ليكي لحد اللحظة اللي بتبصي فيها في مرايتك وتلاقي قمر منور 👌🏻🤍 
 متنسيش تسألينا ع تفاصيل حجز الميك اب الفرح والحنة ''',
     tags: <String>["space"],
-    likes: 7820,
-    isLiked: true,
-    comments: 428,
-    showCaseComment: 'Esta edición está super genial, que pro!!',
-    showCaseCommentAuthor: "Perla_Pipol",
     timeOfPublish: DateTime.now().subtract(
       const Duration(minutes: 27),
     ),
@@ -49,11 +44,6 @@ List<IURPostModel> postsSamples = [
 ليكي لحد اللحظة اللي بتبصي فيها في مرايتك وتلاقي قمر منور 👌🏻🤍 
 متنسيش تسألينا ع تفاصيل حجز الميك اب الفرح والحنة ''',
     tags: <String>["space"],
-    likes: 7820,
-    isLiked: true,
-    comments: 428,
-    showCaseComment: 'Esta edición está super genial, que pro!!',
-    showCaseCommentAuthor: "Perla_Pipol",
     timeOfPublish: DateTime.now().subtract(
       const Duration(minutes: 27),
     ),
