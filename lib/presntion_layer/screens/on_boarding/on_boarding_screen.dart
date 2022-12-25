@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../widgets/compnnents.dart';
 import '../login/login_screen.dart';
 
+//yarb ng7na na na
 class BoardingModel {
   String? image;
   String? title;
