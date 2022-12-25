@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/compnnents.dart';
 import '../login/login_screen.dart';
 
+//yarb ng7na na na
 class BoardingModel {
   String? image;
   String? title;
