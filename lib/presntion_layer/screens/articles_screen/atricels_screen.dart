@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/article_model.dart';
-import '../../widgets/article/article_screen_view.dart';
+import 'components/article_screen_view.dart';
 
 class ArticlesScreen extends StatelessWidget {
   const ArticlesScreen({Key? key}) : super(key: key);

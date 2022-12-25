@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/app_color.dart';
-import '../../../core/app_style.dart';
-import '../../../models/about_us_model.dart';
+import '../../../../core/app_color.dart';
+import '../../../../core/app_style.dart';
+import '../../../../models/about_us_model.dart';
 
 class CardView extends StatelessWidget {
   final AboutUsModel aboutUsModel;
