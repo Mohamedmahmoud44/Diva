@@ -5,6 +5,7 @@ import '../../widgets/compnnents.dart';
 import '../login/login_screen.dart';
 
 // بسم الله الرحمن الرحيم
+//22
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
