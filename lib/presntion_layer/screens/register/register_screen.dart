@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/compnnents.dart';
 import '../login/login_screen.dart';
 
+// بسم الله الرحمن الرحيم
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 

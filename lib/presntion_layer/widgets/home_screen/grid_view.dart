@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ViewGrid extends StatelessWidget {
   final int crossAxisCount;
   final int itemCount;
-  final Widget? Function(BuildContext context, int index) itemBuilder;
+  final Widget Function(BuildContext context, int index) itemBuilder;
   bool shrinkWrap;
   final double childAspectRatio;
 
