@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,10 +7,15 @@ import '../../../core/icon_root.dart';
 import '../../home_page_layout.dart';
 import '../../widgets/compnnents.dart';
 import '../register/register_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+   LoginScreen({Key? key}) : super(key: key);
 
+
+  final FirebaseAuth auth =FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +142,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          navigateTo(context, const RegisterScreen());
+
                         },
                         child: const Text(
                           'انشاء حساب',
@@ -197,10 +203,7 @@ class LoginScreen extends StatelessWidget {
                         )),
                     child: TextButton(
                       onPressed: () {
-                        navigateAndFinish(
-                          context,
-                          const HomePageLayoutScreen(),
-                        );
+                        signInWithGoogle(context);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -228,5 +231,25 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> signInWithGoogle(context)async
+  {
+    GoogleSignInAccount? googleSignInAccount= await _googleSignIn.signIn();
+    GoogleSignInAuthentication authentication = await googleSignInAccount!.authentication;
+    AuthCredential credential =
+    GoogleAuthProvider.credential(idToken: authentication.idToken,accessToken: authentication.accessToken);
+    final user = (await auth.signInWithCredential(credential)).user;
+  if(user != null)
+    {
+      navigateAndFinish(context, HomePageLayoutScreen());
+      print('$user.email');
+
+    }
+  }
+
+  Future<void> signOut() async
+  {
+    await _googleSignIn.signOut();
   }
 }

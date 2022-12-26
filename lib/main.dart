@@ -7,16 +7,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'cubit/home_page_cubit.dart';
 import 'presntion_layer/screens/splash/spalsh_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(
-      DevicePreview(
-          enabled: !kReleaseMode,
-          builder: (context) {
-            return MyApp();
-          }
-          // Wrap your app
-          ),
-    );
+
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
