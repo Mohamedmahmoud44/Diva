@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "235032353596",
+    "project_id": "diva-dodo",
+    "storage_bucket": "diva-dodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235032353596:android:d4eca5adede3d2bc815c39",
+        "android_client_info": {
+          "package_name": "com.example.diva_final_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235032353596-osmr15kid3qgp8o595go8sdor4a9j2pe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diva_final_project",
+            "certificate_hash": "0c5e8929871c11fec279b4d56a68434cb02bc7c9"
+          }
+        },
+        {
+          "client_id": "235032353596-mf32o5n7neb0qv7cqr252g4baokbj5mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGIit5EFi2fCrsYuWOJiAfzzzV2DuDWFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235032353596-mf32o5n7neb0qv7cqr252g4baokbj5mn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

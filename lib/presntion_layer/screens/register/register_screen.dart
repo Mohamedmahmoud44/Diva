@@ -190,7 +190,7 @@ class RegisterScreen extends StatelessWidget {
                           )),
                       child: TextButton(
                         onPressed: () {
-                          navigateAndFinish(context, const LoginScreen());
+                          navigateAndFinish(context,  LoginScreen());
                         },
                         child: Text(
                           'حفظ ',
@@ -213,7 +213,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            navigateAndFinish(context, const LoginScreen());
+                            navigateAndFinish(context,  LoginScreen());
                           },
                           child: const Text(
                             'تسجيل دخول',
