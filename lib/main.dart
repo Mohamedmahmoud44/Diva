@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'cubit/home_page_cubit.dart';
+import 'network/remote/dio_helper.dart';
 import 'presntion_layer/screens/splash/spalsh_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -13,6 +14,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  DioHelper.init();
   runApp(const MyApp());
 }
 
