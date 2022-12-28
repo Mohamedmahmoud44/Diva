@@ -160,13 +160,12 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () async {
-                            // if(formKey.currentState!.validate())
-                            // {
-                            //   print(emailController.text);
-                            //   print(passwordController.text);
-                            // }
-                            await signOut();
+                          onPressed: () {
+                            if(formKey.currentState!.validate())
+                            {
+                              print(emailController.text);
+                              print(passwordController.text);
+                            }
                           },
                           child: const Text(
                             'انشاء حساب',
@@ -226,8 +225,8 @@ class LoginScreen extends StatelessWidget {
                             35,
                           )),
                       child: TextButton(
-                        onPressed: ()async {
-                          await signInWithGoogle(context);
+                        onPressed: () {
+                          signInWithGoogle(context);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -267,7 +266,7 @@ class LoginScreen extends StatelessWidget {
     final user = (await auth.signInWithCredential(credential)).user;
   if(user != null)
     {
-
+      navigateAndFinish(context, HomePageLayoutScreen());
       print('$user.email');
 
     }

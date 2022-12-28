@@ -68,7 +68,7 @@ class IURPostCard extends StatelessWidget {
                 ),
                 Text.rich(
                   TextSpan(
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontWeight: FontWeight.w400,
                           color: AppColor.blackColor.withOpacity(1),
                           fontSize: 14,
