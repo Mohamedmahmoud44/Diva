@@ -9,6 +9,7 @@ import '../../../core/icon_root.dart';
 import '../../home_page_layout.dart';
 import '../../widgets/compnnents.dart';
 
+//lala
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -116,11 +117,12 @@ class LoginScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () async {
-                            if (formKey.currentState!.validate()) {
-                              print(emailController.text);
-                              print(passwordController.text);
-                            }
+                            // if (formKey.currentState!.validate()) {
+                            //   print(emailController.text);
+                            //   print(passwordController.text);
+                            // }
                             // await signOut();
+                            await cubit.logOut();
                           },
                           child: const Text(
                             'انشاء حساب',
@@ -135,9 +137,9 @@ class LoginScreen extends StatelessWidget {
                       height: 50.h,
                     ),
                     CustomButton(
-                      onPressed: () => cubit.userData != null
-                          ? cubit.logOut()
-                          : cubit.login(),
+                      onPressed: ()async {
+                        await cubit.login();
+                      },
                       text: 'الدخول باستخدام الفيس بوك',
                       imageIcon: IconRoot.facebookIcon,
                     ),
