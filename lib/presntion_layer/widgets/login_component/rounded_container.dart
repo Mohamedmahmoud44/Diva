@@ -3,15 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoundedContainer extends StatelessWidget {
   final Widget child;
-  final Color color;
-  final double height;
-  final double width;
+   Color color;
+  final double? height;
+  final double? width;
   RoundedContainer(
       {Key? key,
       required this.child,
       required this.color,
-      this.height = 350,
-      this.width = 200})
+      this.height ,
+      this.width ,
+      })
       : super(key: key);
 
   @override

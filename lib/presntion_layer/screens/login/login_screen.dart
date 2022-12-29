@@ -1,3 +1,5 @@
+import 'package:diva_final_project/presntion_layer/widgets/login_component/custom_button.dart';
+import 'package:diva_final_project/presntion_layer/widgets/login_component/rounded_filed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -141,88 +143,116 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 20.h,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFff2F2F2),
-                        borderRadius: BorderRadius.circular(
-                          35.r,
-                        ),
-                      ),
-                      child: TextFormField(
-                        validator: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'برجاء ادخال البريد الالكتروني';
-                          }
-                          return null;
-                        },
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(
-                              35.r,
-                            ),
-                          ),
-                          hintText: 'البريد الالكتروني',
-                          suffixIcon: const Icon(Icons.email),
-                        ),
-                      ),
+                    RoundedTextFormFiled(
+                      controller: emailController,
+                      type: TextInputType.emailAddress,
+                      hintText: 'البريد الالكتروني',
+                      suffixIcon: Icons.email,
+                      validate: (String? value) {
+                        if (value!.isEmpty) {
+                          return 'برجاء ادخال البريد الالكتروني';
+                        }
+                        return null;
+                      },
                     ),
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     color: const Color(0xFff2F2F2),
+                    //     borderRadius: BorderRadius.circular(
+                    //       35.r,
+                    //     ),
+                    //   ),
+                    //   child: TextFormField(
+                    //     validator: (String? value) {
+                    //       if (value!.isEmpty) {
+                    //         return 'برجاء ادخال البريد الالكتروني';
+                    //       }
+                    //       return null;
+                    //     },
+                    //     controller: emailController,
+                    //     keyboardType: TextInputType.emailAddress,
+                    //     decoration: InputDecoration(
+                    //       border: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(
+                    //           35.r,
+                    //         ),
+                    //       ),
+                    //       hintText: 'البريد الالكتروني',
+                    //       suffixIcon: const Icon(Icons.email),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20.h,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFff2F2F2),
-                        borderRadius: BorderRadius.circular(
-                          35.r,
-                        ),
-                      ),
-                      child: TextFormField(
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'برجاء ادخال كلمه السر';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(
-                              35,
-                            ),
-                          ),
-                          hintText: 'كلمه المرور',
-                          suffixIcon: const Icon(Icons.lock),
-                        ),
-                      ),
+                    RoundedTextFormFiled(
+                      controller: emailController,
+                      type: TextInputType.visiblePassword,
+                      hintText: 'كلمه المرور',
+                      suffixIcon: Icons.lock,
+                      validate: (String? value) {
+                        if (value!.isEmpty) {
+                          return 'كلمه المرور قصيره جدا';
+                        }
+                        return null;
+                      },
                     ),
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     color: const Color(0xFff2F2F2),
+                    //     borderRadius: BorderRadius.circular(
+                    //       35.r,
+                    //     ),
+                    //   ),
+                    //   child: TextFormField(
+                    //     controller: passwordController,
+                    //     keyboardType: TextInputType.visiblePassword,
+                    //     validator: (String? value) {
+                    //       if (value!.isEmpty) {
+                    //         return 'برجاء ادخال كلمه السر';
+                    //       }
+                    //       return null;
+                    //     },
+                    //     decoration: InputDecoration(
+                    //       border: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.circular(
+                    //           35,
+                    //         ),
+                    //       ),
+                    //       hintText: 'كلمه المرور',
+                    //       suffixIcon: const Icon(Icons.lock),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20.h,
                     ),
-                    Container(
-                      width: 380.w,
-                      height: 55.h,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFfE50263),
-                          borderRadius: BorderRadius.circular(
-                            35,
-                          )),
-                      child: TextButton(
-                        onPressed: () {
-                          navigateAndFinish(
-                            context,
-                            const HomePageLayoutScreen(),
-                          );
-                        },
-                        child: Text(
-                          'الدخول',
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 14.sp),
-                        ),
-                      ),
+                    CustomButton(
+                      onPressed: () {},
+                      text: 'الدخول',
                     ),
+                    // Container(
+                    //   width: 380.w,
+                    //   height: 55.h,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color(0xFfE50263),
+                    //       borderRadius: BorderRadius.circular(
+                    //         35,
+                    //       )),
+                    //   child: TextButton(
+                    //     onPressed: () {
+                    //       navigateAndFinish(
+                    //         context,
+                    //         const HomePageLayoutScreen(),
+                    //       );
+                    //     },
+                    //     child: Text(
+                    //       'الدخول',
+                    //       style:
+                    //           TextStyle(color: Colors.white, fontSize: 14.sp),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 14.h,
                     ),
@@ -238,12 +268,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () async {
-                            // if(formKey.currentState!.validate())
-                            // {
-                            //   print(emailController.text);
-                            //   print(passwordController.text);
-                            // }
-                            await signOut();
+                            if(formKey.currentState!.validate())
+                            {
+                              print(emailController.text);
+                              print(passwordController.text);
+                            }
+                            // await signOut();
                           },
                           child: const Text(
                             'انشاء حساب',
@@ -257,72 +287,88 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 50.h,
                     ),
-                    Container(
-                      width: 380.w,
-                      height: 55.h,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFfE50263),
-                          borderRadius: BorderRadius.circular(
-                            35,
-                          )),
-                      child: _checking
-                          ? CircularProgressIndicator()
-                          : TextButton(
-                              onPressed: () =>
-                                  _userData != null ? _logOut() : _login(),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ImageIcon(
-                                    AssetImage(IconRoot.facebookIcon),
-                                    color: AppColor.whiteColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Text(
-                                    'الدخول باستخدام فيسبوك',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 14.sp),
-                                  ),
-                                ],
-                              ),
-                            ),
+                    CustomButton(
+                      onPressed: ()
+                      {
+                        _userData != null ? _logOut() : _login();
+                      },
+                      text: 'الدخول باستخدام الفيس بوك',
+
                     ),
+                    // Container(
+                    //   width: 380.w,
+                    //   height: 55.h,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color(0xFfE50263),
+                    //       borderRadius: BorderRadius.circular(
+                    //         35,
+                    //       )),
+                    //   child: _checking
+                    //       ? CircularProgressIndicator()
+                    //       : TextButton(
+                    //           onPressed: () =>
+                    //               _userData != null ? _logOut() : _login(),
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               ImageIcon(
+                    //                 AssetImage(IconRoot.facebookIcon),
+                    //                 color: AppColor.whiteColor,
+                    //               ),
+                    //               SizedBox(
+                    //                 width: 10.w,
+                    //               ),
+                    //               Text(
+                    //                 'الدخول باستخدام فيسبوك',
+                    //                 style: TextStyle(
+                    //                     color: Colors.white, fontSize: 14.sp),
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    // ),
                     SizedBox(
                       height: 14.h,
                     ),
-                    Container(
-                      width: 380.w,
-                      height: 55.h,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFfE50263),
-                          borderRadius: BorderRadius.circular(
-                            35,
-                          )),
-                      child: TextButton(
-                        onPressed: () async {
-                          await signInWithGoogle(context);
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ImageIcon(
-                              AssetImage(IconRoot.googleIcon),
-                              color: AppColor.whiteColor,
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Text(
-                              'الدخول باستخدام جوجل',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 14.sp),
-                            ),
-                          ],
-                        ),
-                      ),
+                    CustomButton(
+                      onPressed: ()async
+                      {
+                        await signInWithGoogle(context);
+                      },
+                      text: 'الدخول باستخدام الجيميل',
+
                     ),
+                    // Container(
+                    //   width: 380.w,
+                    //   height: 55.h,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color(0xFfE50263),
+                    //       borderRadius: BorderRadius.circular(
+                    //         35,
+                    //       )),
+                    //   child: TextButton(
+                    //     onPressed: () async {
+                    //       await signInWithGoogle(context);
+                    //     },
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         ImageIcon(
+                    //           AssetImage(IconRoot.googleIcon),
+                    //           color: AppColor.whiteColor,
+                    //         ),
+                    //         SizedBox(
+                    //           width: 10.w,
+                    //         ),
+                    //         Text(
+                    //           'الدخول باستخدام جوجل',
+                    //           style: TextStyle(
+                    //               color: Colors.white, fontSize: 14.sp),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -350,3 +396,4 @@ class _LoginScreenState extends State<LoginScreen> {
     await _googleSignIn.signOut();
   }
 }
+//353
