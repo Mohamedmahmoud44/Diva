@@ -9,6 +9,7 @@ class RoundedTextFormFiled extends StatelessWidget {
       required this.controller,
       required this.type,
       this.validate,
+
       required this.hintText,
       this.prefix,
       this.suffixIcon,
@@ -19,7 +20,6 @@ class RoundedTextFormFiled extends StatelessWidget {
   final validate;
   final String hintText;
   IconData? prefix;
-
   // IconData? suffix;
   IconData? suffixIcon;
   Function()? suffixPressed;
@@ -28,9 +28,11 @@ class RoundedTextFormFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return RoundedContainer(
       color: const Color(0xFff2F2F2),
+
       child: TextFormField(
         validator: validate,
         controller: controller,
+
         keyboardType: type,
         decoration: InputDecoration(
           border: OutlineInputBorder(
