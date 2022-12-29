@@ -3,11 +3,10 @@ import 'package:diva_final_project/presntion_layer/widgets/login_component/round
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../widgets/already_have_account.dart';
 import '../../widgets/compnnents.dart';
 import '../login/login_screen.dart';
 
-// بسم الله الرحمن الرحيم
-//22
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -145,29 +144,12 @@ class RegisterScreen extends StatelessWidget {
                       onPressed: () {},
                       text: 'حفظ',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'هل لديك حساب؟',
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            navigateAndFinish(context, LoginScreen());
-                          },
-                          child: const Text(
-                            'تسجيل دخول',
-                            style: TextStyle(
-                              color: Color(0xffE50263),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    AlreadyHaveAccount(
+                      onTap: () {
+                        navigateAndFinish(context, LoginScreen());
+                      },
+                      login: false,
+                    )
                   ],
                 ),
               ),
@@ -177,5 +159,4 @@ class RegisterScreen extends StatelessWidget {
       ),
     );
   }
-//lala
 }

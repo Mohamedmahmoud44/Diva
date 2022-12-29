@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/icon_root.dart';
 import '../../home_page_layout.dart';
+import '../../widgets/already_have_account.dart';
 import '../../widgets/compnnents.dart';
 
 //lala
@@ -105,39 +106,16 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: 14.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'ليس لديك حساب؟',
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            // if (formKey.currentState!.validate()) {
-                            //   print(emailController.text);
-                            //   print(passwordController.text);
-                            // }
-                            // await signOut();
-                            await cubit.logOut();
+                        AlreadyHaveAccount(
+                          onTap: () {
+                            navigateTo(context, RegisterScreen());
                           },
-                          child: const Text(
-                            'انشاء حساب',
-                            style: TextStyle(
-                              color: Color(0xFfE50263),
-                            ),
-                          ),
                         ),
-                      ],
-                    ),
                     SizedBox(
                       height: 50.h,
                     ),
                     CustomButton(
-                      onPressed: ()async {
+                      onPressed: () async {
                         await cubit.login();
                       },
                       text: 'الدخول باستخدام الفيس بوك',
