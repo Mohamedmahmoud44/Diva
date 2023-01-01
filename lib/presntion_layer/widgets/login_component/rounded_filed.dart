@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'rounded_container.dart';
 
@@ -9,7 +8,6 @@ class RoundedTextFormFiled extends StatelessWidget {
       required this.controller,
       required this.type,
       this.validate,
-
       required this.hintText,
       this.prefix,
       this.suffixIcon,
@@ -20,6 +18,7 @@ class RoundedTextFormFiled extends StatelessWidget {
   final validate;
   final String hintText;
   IconData? prefix;
+
   // IconData? suffix;
   IconData? suffixIcon;
   Function()? suffixPressed;
@@ -27,30 +26,28 @@ class RoundedTextFormFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundedContainer(
-      color: const Color(0xFff2F2F2),
-
+      height: 70,
+      color: Colors.white,
+      // color: const Color(0xFff2F2F2),
       child: TextFormField(
         validator: validate,
         controller: controller,
-
         keyboardType: type,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              35.r,
+            isDense: true,
+            hintText: hintText,
+            suffixIcon: IconButton(
+              icon: Icon(suffixIcon),
+              onPressed: suffixPressed,
             ),
-          ),
-          // hintStyle: ,
-          hintText: hintText,
-          // suffix: Icon(
-          //   suffix,
-          //   color: Colors.red,
-          // ),
-          suffixIcon: IconButton(
-            icon: Icon(suffixIcon),
-            onPressed: suffixPressed,
-          ),
-        ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(
+                color: Colors.green,
+              ),
+            ),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
       ),
     );
   }

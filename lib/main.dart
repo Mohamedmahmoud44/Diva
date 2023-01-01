@@ -1,15 +1,16 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:diva_final_project/cubit/log_in/log_in_cubit.dart';
+import 'package:diva_final_project/presntion_layer/screens/login/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'cubit/facebook_posts/facebook_cubit.dart';
 import 'cubit/home_page_cubit.dart';
 import 'cubit/observer_cubit.dart';
 import 'network/remote/dio_helper.dart';
-import 'presntion_layer/screens/splash/spalsh_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,10 @@ class MyApp extends StatelessWidget {
                 create: (context) => HomePageCubit(),
               ),
               BlocProvider(
-                create: (context) => LoginCubit()..checkIfIsLogged(),
+                create: (context) => LoginCubit(),
+              ),
+              BlocProvider(
+                create: (context) => HomePagCubit()..getCategoryData(),
               ),
             ],
             child: MaterialApp(
@@ -52,7 +56,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 debugShowCheckedModeBanner: false,
-                home: const SplashScreen()),
+                home: LoginScreen()),
           );
         });
   }
