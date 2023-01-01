@@ -36,3 +36,21 @@ class FacebookLogoutFail extends LoginStates {
 
   FacebookLogoutFail({required this.error});
 }
+//============================================================================================================================================
+//login state
+
+class LoginInitialState extends LoginStates{}
+
+class LoginLoadingState extends LoginStates{}
+
+class ShopLoginSuccessState extends LoginStates
+{
+
+}
+
+class ShopLoginErrorState extends LoginStates
+{
+  final String error;
+
+  ShopLoginErrorState(this.error);
+}

@@ -67,4 +67,8 @@ class LoginCubit extends Cubit<LoginStates> {
   Future<void> signOut() async {
     await _googleSignIn.signOut();
   }
+  //======================================================================================================================================================
+
+
+
 }
