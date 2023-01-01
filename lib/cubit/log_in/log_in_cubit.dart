@@ -11,23 +11,6 @@ class LoginCubit extends Cubit<LoginStates> {
 
   Map<String, dynamic>? userData;
   AccessToken? _accessToken;
-  bool checking = true;
-
-  Future<void> checkIfIsLogged() async {
-    emit(FacebookLoginLoading());
-    final accessToken = await FacebookAuth.instance.accessToken;
-    checking = false;
-    emit(FacebookLoginLoading());
-    if (accessToken != null) {
-      print("is Logged:::: ${(accessToken.toJson())}");
-      // now you can call to  FacebookAuth.instance.getUserData();
-      final userDataa = await FacebookAuth.instance.getUserData();
-      // final userData = await FacebookAuth.instance.getUserData(fields: "email,birthday,friends,gender,link");
-      _accessToken = accessToken;
-      userData = userDataa;
-      emit(FacebookLoginLoading());
-    }
-  }
 
   void _printCredentials() {
     print(
@@ -38,13 +21,6 @@ class LoginCubit extends Cubit<LoginStates> {
   Future<void> login() async {
     final LoginResult result = await FacebookAuth.instance
         .login(); // by default we request the email and the public profile
-
-    // loginBehavior is only supported for Android devices, for ios it will be ignored
-    // final result = await FacebookAuth.instance.login(
-    //   permissions: ['email', 'public_profile', 'user_birthday', 'user_friends', 'user_gender', 'user_link'],
-    //   loginBehavior: LoginBehavior
-    //       .DIALOG_ONLY, // (only android) show an authentication dialog instead of redirecting to facebook app
-    // );
 
     if (result.status == LoginStatus.success) {
       _accessToken = result.accessToken;
@@ -58,7 +34,6 @@ class LoginCubit extends Cubit<LoginStates> {
       print(result.status);
       print(result.message);
     }
-    checking = false;
     emit(FacebookLoginSuccess());
   }
 

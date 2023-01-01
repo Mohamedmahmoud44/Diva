@@ -9,6 +9,7 @@ import '../../../core/icon_root.dart';
 import '../../home_page_layout.dart';
 import '../../widgets/already_have_account.dart';
 import '../../widgets/compnnents.dart';
+import '../post_detail/post_detail_screen.dart';
 
 //lala
 class LoginScreen extends StatelessWidget {
@@ -99,24 +100,33 @@ class LoginScreen extends StatelessWidget {
                     ),
                     CustomButton(
                       onPressed: () {
-                        navigateTo(context, RegisterScreen());
+                        if (formKey.currentState!.validate()) {
+                          navigateTo(context, HomePageLayoutScreen());
+                        }
                       },
                       text: 'الدخول',
+                    ),
+                    CustomButton(
+                      onPressed: () async {
+                        await cubit.logOut();
+                      },
+                      text: 'الخروج',
                     ),
                     SizedBox(
                       height: 14.h,
                     ),
-                        AlreadyHaveAccount(
-                          onTap: () {
-                            navigateTo(context, RegisterScreen());
-                          },
-                        ),
+                    AlreadyHaveAccount(
+                      onTap: () {
+                        navigateTo(context, RegisterScreen());
+                      },
+                    ),
                     SizedBox(
                       height: 50.h,
                     ),
                     CustomButton(
                       onPressed: () async {
                         await cubit.login();
+                        navigateAndFinish(context, PostDetails());
                       },
                       text: 'الدخول باستخدام الفيس بوك',
                       imageIcon: IconRoot.facebookIcon,
