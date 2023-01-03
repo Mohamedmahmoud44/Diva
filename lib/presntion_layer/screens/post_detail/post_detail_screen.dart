@@ -10,6 +10,7 @@ import 'facebook_posts.dart';
 class PostDetails extends StatelessWidget {
   const PostDetails({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FacebookPostsCubit, FacebookPostsStates>(
