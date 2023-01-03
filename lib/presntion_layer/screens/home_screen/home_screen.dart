@@ -222,9 +222,9 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Align(
                       alignment: Alignment.topLeft,
-                      child: SvgPicture.asset(
-                        'assets/svg/facebook-5-logo-svgrepo-com.svg',
-                        height: 75.h,
+                      child: Text(
+                        'Facebook',
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(
