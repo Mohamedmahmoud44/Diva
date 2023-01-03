@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/app_color.dart';
 import 'rounded_container.dart';
 
 class RoundedTextFormFiled extends StatelessWidget {
@@ -26,28 +27,20 @@ class RoundedTextFormFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundedContainer(
-      height: 70,
-      color: Colors.white,
-      // color: const Color(0xFff2F2F2),
+      color: AppColor.whiteHeader,
       child: TextFormField(
         validator: validate,
         controller: controller,
         keyboardType: type,
         decoration: InputDecoration(
-            isDense: true,
-            hintText: hintText,
-            suffixIcon: IconButton(
-              icon: Icon(suffixIcon),
-              onPressed: suffixPressed,
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(
-                color: Colors.green,
-              ),
-            ),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
+          isDense: true,
+          hintText: hintText,
+          suffixIcon: IconButton(
+            icon: Icon(suffixIcon),
+            onPressed: suffixPressed,
+          ),
+          border: InputBorder.none,
+        ),
       ),
     );
   }

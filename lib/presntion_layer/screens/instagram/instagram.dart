@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:diva_final_project/cubit/instagram_posts/instagram_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' show Client;
 
+import '../../../cubit/instagram_posts/instagram_cubit.dart';
 import '../../../models/instagram.dart';
 import 'instagra_post.dart';
 
@@ -43,26 +46,41 @@ class _InstagramPostState extends State<InstagramPost> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            color: Colors.black,
+    return BlocConsumer<InstagramPostsCubit, InstagramPostsStates>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        var cubit = InstagramPostsCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            leading: BackButton(
+              color: Colors.black,
+            ),
+            title: SvgPicture.asset(
+              'assets/svg/ic_instagram.svg',
+              color: Colors.black,
+              height: 50,
+            ),
+            elevation: 0,
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
           ),
-          title: SvgPicture.asset(
-            'assets/svg/ic_instagram.svg',
-            color: Colors.black,
-            height: 50,
-          ),
-          elevation: 0,
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-        ),
-        body: ListView.builder(
-          clipBehavior: Clip.hardEdge,
-          itemBuilder: (context, index) => ImagePost(
-            media: fbDataList[index],
-          ),
-          itemCount: fbDataList.length,
-        ));
+          body: cubit.instData?.businessDiscovery?.media?.data != null
+              ? ListView.builder(
+                  clipBehavior: Clip.hardEdge,
+                  itemBuilder: (context, index) => ImagePost(
+                    media:
+                        cubit.instData!.businessDiscovery!.media!.data![index],
+                  ),
+                  itemCount:
+                      cubit.instData!.businessDiscovery!.media!.data!.length,
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                ),
+        );
+      },
+    );
   }
 }

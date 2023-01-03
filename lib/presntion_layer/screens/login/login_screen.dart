@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/app_color.dart';
+import '../../../core/app_style.dart';
 import '../../../core/icon_root.dart';
 import '../../home_page_layout.dart';
 import '../../widgets/already_have_account.dart';
@@ -42,50 +44,33 @@ class LoginScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = LoginCubit.get(context);
 
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            actions: [
-              TextButton(
-                onPressed: () {
-                  navigateAndFinish(context, HomePageLayoutScreen());
-                },
-                child: Text(
-                  'تخطي',
-                  style: TextStyle(color: Color(0xFfE50263), fontSize: 18),
-                ),
-              )
-            ],
-          ),
-          body: Directionality(
-            textDirection: TextDirection.rtl,
-            child: SingleChildScrollView(
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: AppColor.whiteColor,
+            body: Directionality(
+              textDirection: TextDirection.rtl,
               child: Center(
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.w),
                   child: Form(
                     key: formKey,
-                    child: Column(
+                    child: ListView(
+                      physics: BouncingScrollPhysics(),
                       children: [
                         Text(
                           'تسجيل دخول',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: titleStyle.copyWith(fontSize: 30),
+                          textAlign: TextAlign.center,
                         ),
                         Text(
                           'اضف معلومات الدخول',
-                          style: TextStyle(
-                              color: Colors.black45,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold),
+                          style:
+                              bodyStyle4.copyWith(color: AppColor.greyHeader),
+                          textAlign: TextAlign.center,
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: MediaQuery.of(context).size.height * 0.03,
                         ),
                         RoundedTextFormFiled(
                           controller: emailController,
@@ -94,13 +79,15 @@ class LoginScreen extends StatelessWidget {
                           suffixIcon: Icons.email,
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return 'برجاء ادخال البريد الالكتروني';
+                              buildSnackError(
+                                  'برجاء ادخال البريد الالكتروني', context);
+                              return '';
                             }
                             return null;
                           },
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: MediaQuery.of(context).size.height * 0.03,
                         ),
                         RoundedTextFormFiled(
                           controller: emailController,
@@ -109,30 +96,36 @@ class LoginScreen extends StatelessWidget {
                           suffixIcon: Icons.lock,
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return 'كلمه المرور قصيره جدا';
+                              buildSnackError('كلمه المرور قصيره جدا', context);
+                              return '';
                             }
                             return null;
                           },
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: MediaQuery.of(context).size.height * 0.03,
                         ),
                         CustomButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              navigateTo(context, HomePageLayoutScreen());
+                              navigateAndFinish(
+                                  context, HomePageLayoutScreen());
                             }
                           },
                           text: 'الدخول',
                         ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
                         CustomButton(
-                          onPressed: () async {
-                            await cubit.logOut();
+                          isSkippedButton: true,
+                          onPressed: () {
+                            navigateAndFinish(context, HomePageLayoutScreen());
                           },
-                          text: 'الخروج',
+                          text: 'تخطي',
                         ),
                         SizedBox(
-                          height: 14.h,
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         AlreadyHaveAccount(
                           onTap: () {
@@ -140,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          height: 50.h,
+                          height: MediaQuery.of(context).size.height * 0.04,
                         ),
                         CustomButton(
                           onPressed: () async {
@@ -150,7 +143,7 @@ class LoginScreen extends StatelessWidget {
                           imageIcon: IconRoot.facebookIcon,
                         ),
                         SizedBox(
-                          height: 14.h,
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         CustomButton(
                           onPressed: () async {
@@ -177,9 +170,9 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> buildSnackError(
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       duration: const Duration(seconds: 2),
-      backgroundColor: Colors.black,
+      backgroundColor: AppColor.pinkColor,
       content: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.02,
+        height: MediaQuery.of(context).size.height * 0.05,
         child: Center(
           child: Text(error),
         ),
