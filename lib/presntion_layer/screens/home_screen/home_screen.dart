@@ -238,7 +238,7 @@ class _HomePageState extends State<HomePage> {
               Card(
                 child: Container(
                   margin: EdgeInsets.all(10),
-                  height: 800,
+                  height: 1200,
                   child: Column(
                     children: [
                       ...List.generate(
