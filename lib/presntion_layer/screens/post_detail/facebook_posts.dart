@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diva_final_project/models/fb_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FaceBookPosts extends StatelessWidget {
   final Data fbData;
@@ -41,18 +42,26 @@ class FaceBookPosts extends StatelessWidget {
             SizedBox(
               height: 15.h,
             ),
-            Container(
-              height: 200.h,
-              width: double.infinity,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.r),
-                child: CachedNetworkImage(
-                  imageUrl: fbData.fullPicture!,
-                  fit: BoxFit.cover,
-                  height: 200,
-                  width: 200,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+            InkWell(
+              onTap: () async {
+                if (!await launchUrl(Uri.parse(fbData.permalinkUrl!),
+                    mode: LaunchMode.externalApplication)) {
+                  throw 'Could not launch ${fbData.permalinkUrl!}';
+                }
+              },
+              child: Container(
+                height: 200.h,
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.r),
+                  child: CachedNetworkImage(
+                    imageUrl: fbData.fullPicture!,
+                    fit: BoxFit.cover,
+                    height: 200,
+                    width: 200,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
                 ),
               ),
             )

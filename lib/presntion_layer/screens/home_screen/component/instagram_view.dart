@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../models/instagram_view.dart';
+import '../../../../models/instagram.dart';
 
 class InstaView extends StatelessWidget {
-  final InstagramView instagramView;
+  // final InstagramView instagramView;
+  final InstagramData media;
 
-  const InstaView({Key? key, required this.instagramView}) : super(key: key);
+  const InstaView({Key? key, required this.media}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class InstaView extends StatelessWidget {
               Container(
                 width: 300.w,
                 child: Text(
-                  instagramView.title,
+                  media.caption!,
                   style: TextStyle(fontSize: 13.sp, color: Colors.black),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -39,8 +41,8 @@ class InstaView extends StatelessWidget {
                 child: SizedBox(
                   width: 280.r,
                   height: 230.r,
-                  child: Image.asset(
-                    instagramView.urlImage,
+                  child: CachedNetworkImage(
+                    imageUrl: media.mediaUrl!,
                     fit: BoxFit.cover,
                   ),
                 ),

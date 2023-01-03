@@ -1,6 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:diva_final_project/cubit/log_in/log_in_cubit.dart';
-import 'package:diva_final_project/presntion_layer/screens/login/login_screen.dart';
+import 'package:diva_final_project/presntion_layer/screens/splash/spalsh_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,18 +10,41 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'cubit/facebook_posts/facebook_cubit.dart';
 import 'cubit/home_page_cubit.dart';
 import 'cubit/observer_cubit.dart';
-import 'network/remote/dio_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await CacheHelper.inIt();
   await Firebase.initializeApp();
-  DioHelper.init();
   Bloc.observer = MyBlocObserver();
-  runApp(const MyApp());
+  // token = CacheHelper.getData(key: 'token');
+  // log('The Token Generate Is ${token.toString()}');
+  // bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+  // log('Is Boarding Removed??${onBoarding.toString()}');
+  // Widget widget;
+  // if (onBoarding != null) {
+  //   if (token != null) {
+  //     widget = HomePageLayoutScreen();
+  //   } else {
+  //     widget = LoginScreen();
+  //   }
+  // } else {
+  //   widget = OnBoardingScreen();
+  // }
+  // if (token != null) {
+  //   widget = const HomePageLayoutScreen();
+  // } else {
+  //   widget = LoginScreen();
+  // }
+  // runApp(MyApp(widget, token));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // MyApp(this.startWidget, this.token, {super.key});
+  MyApp({super.key});
+
+  // final Widget startWidget;
+  // String? token;
 
   // This widget is the root of your application.
   @override
@@ -40,7 +63,7 @@ class MyApp extends StatelessWidget {
                 create: (context) => LoginCubit(),
               ),
               BlocProvider(
-                create: (context) => HomePagCubit()..getCategoryData(),
+                create: (context) => FacebookPostsCubit()..getAllPosts(),
               ),
             ],
             child: MaterialApp(
@@ -56,7 +79,8 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 debugShowCheckedModeBanner: false,
-                home: LoginScreen()),
+                // home: startWidget,
+                home: SplashScreen()),
           );
         });
   }

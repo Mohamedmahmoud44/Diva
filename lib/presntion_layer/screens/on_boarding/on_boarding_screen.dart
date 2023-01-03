@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../widgets/compnnents.dart';
 import '../login/login_screen.dart';
 
@@ -46,7 +47,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 itemBuilder: (context, index) => buildBoarding(boarding[index]),
                 itemCount: boarding.length,
               ),
-
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -60,7 +60,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                    navigateAndFinish(context, LoginScreen());
+                      navigateAndFinish(context, LoginScreen());
+                      // CacheHelper.saveData(key: 'onBoarding', value: true)
+                      //     .then((value) {
+                      //   if (value) {
+                      //     navigateAndFinish(context, LoginScreen());
+                      //   }
+                      // });
                     },
                     child: const Text(
                       'التالى',

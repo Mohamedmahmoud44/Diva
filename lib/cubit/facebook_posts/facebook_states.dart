@@ -1,13 +1,13 @@
-abstract class HomePagStates {}
+abstract class FacebookPostsStates {}
 
-class HomePageInitial extends HomePagStates {}
+class FaceBookPostsInitial extends FacebookPostsStates {}
 
-class ProductDetailsLoading extends HomePagStates {}
+class FacebookPostsLoading extends FacebookPostsStates {}
 
-class ProductDetailsSuccess extends HomePagStates {}
+class FacebookPostsSuccess extends FacebookPostsStates {}
 
-class ProductDetailsFail extends HomePagStates {
+class FacebookPostsFail extends FacebookPostsStates {
   final String error;
 
-  ProductDetailsFail(this.error);
+  FacebookPostsFail(this.error);
 }

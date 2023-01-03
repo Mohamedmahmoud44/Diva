@@ -1,13 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' show Client;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/app_color.dart';
 import '../../../core/app_style.dart';
 import '../../../core/image_root.dart';
 import '../../../models/carsouel_model.dart';
-import '../../../models/instagram_view.dart';
+import '../../../models/fb_data.dart';
+import '../../../models/instagram.dart';
 import '../../../models/video_model.dart';
 import '../../../size_config.dart';
 import '../../widgets/compnnents.dart';
@@ -16,14 +20,65 @@ import '../../widgets/home_screen/artcile_view.dart';
 import '../../widgets/home_screen/carouel_slider.dart';
 import '../../widgets/home_screen/grid_view.dart';
 import '../../widgets/text_kota.dart';
-import '../instagram_Screen/home.dart';
+import '../instagram/instagram.dart';
+import '../post_detail/facebook_posts.dart';
 import '../post_detail/post_detail_screen.dart';
 import 'component/instagram_view.dart';
 import 'component/video_view_content.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   PageController pageController = PageController();
+  String fbUrl =
+      'https://graph.facebook.com/v15.0/106092821872383?fields=feed%7Bpermalink_url%2Cmessage%2Cfull_picture%7D&access_token=EAAMuZBf9MrtsBAOLGkZAiORfyFv8RXRZCcWUWeDrktPZCwj4RV88EDTJJ8yqCNtxQ5igb2zXEZAYOFw7MsMe45WUmgjkmZAxkmGuXwodUPVFbyXQDTPBhmBjEcwWqahCOlSh8ZB3eiFQH69ubC8ZAP9VSVPpNSaqyHUjpu8dZC5bc0CUvPhHsu2OH';
+  List<Data> fbDataList = [];
+  Client client = Client();
+  String instaUrl =
+      'https://graph.facebook.com/v15.0/17841445284244108?fields=media_count%2Cbusiness_discovery.username(magic_mashallah_store)%7Bfollowers_count%2Cmedia%7Bmedia_url%2Cmedia_product_type%2Ccaption%2Cmedia_type%2Cpermalink%2Ctimestamp%7D%7D&access_token=EAAMuZBf9MrtsBAFNUhRCpVv84auk9Sw0rqWHrnTzByAYyBolRptdyVZBfidskmjzzph6620kOdJaACRb7R9aDOQRiPvten7dxyFcZBqq1HSIPNTG6Sgoe5UPysHCzYpyUKVX2A46CLNse3qt7QXbZBsdVBjIWCGTSddosq0yUzEIIZBkTDO5Y';
+  List<InstagramData> instaDataList = [];
+
+  @override
+  void initState() {
+    fetchData();
+    fetchInstagramData();
+    super.initState();
+  }
+
+  Future fetchData() async {
+    try {
+      final response = await client.get(Uri.parse(fbUrl));
+      if (response.statusCode == 200) {
+        Iterable i = json.decode(response.body)['feed']['data'];
+        setState(() {
+          fbDataList = i.map((data) => Data.fromJson(data)).toList();
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future fetchInstagramData() async {
+    try {
+      final response = await client.get(Uri.parse(instaUrl));
+      if (response.statusCode == 200) {
+        Iterable i =
+            json.decode(response.body)['business_discovery']['media']['data'];
+        setState(() {
+          instaDataList =
+              i.map((data) => InstagramData.fromJson(data)).toList();
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -183,63 +238,65 @@ class HomePage extends StatelessWidget {
               Card(
                 child: Container(
                   margin: EdgeInsets.all(10),
-                  height: 700,
+                  height: 800,
                   child: Column(
                     children: [
                       ...List.generate(
-                        2,
-                        (index) => Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  radius: 25,
-                                  backgroundImage:
-                                      AssetImage(ImageRoot.divaLogo),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text('divanice'),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'عروسه ديفا المميزه كل الكلام ده وأكتر كمان هتسمعيه يوم فرحك بعد ما تختاري فستانك والميك اب مع ديفا ',
-                                  style: TextStyle(fontSize: 14.sp),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.r),
-                                    child: SizedBox(
-                                      height: 169.r,
-                                      width: double.infinity,
-                                      child: Image(
-                                        image: NetworkImage(
-                                          'https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-6/321177608_710504864005101_4234108739131537779_n.jpg?stp=cp6_dst-jpg_s600x600&_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeFSUsr0Ho0_MGHSSpiTsnCSWBtqSEXNMr9YG2pIRc0yv7yIVBqRaGXy1BHh42px2EJxsJ87b31EoLyd4wCxLZoq&_nc_ohc=mxLuE49-bQQAX-PNJPh&_nc_ht=scontent.fcai19-1.fna&oh=00_AfCZQ6oZklZ1e3naDwr7HrY-MDXW8EPU9LudaDm49yJh0Q&oe=63A9AC40',
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
+                          2,
+                          (index) => FaceBookPosts(
+                                fbData: fbDataList[index],
+                              )
+                          //     Column(
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     SizedBox(
+                          //       height: 10,
+                          //     ),
+                          //     Row(
+                          //       children: [
+                          //         CircleAvatar(
+                          //           backgroundColor: Colors.transparent,
+                          //           radius: 25,
+                          //           backgroundImage:
+                          //               AssetImage(ImageRoot.divaLogo),
+                          //         ),
+                          //         SizedBox(
+                          //           width: 5,
+                          //         ),
+                          //         Text('divanice'),
+                          //       ],
+                          //     ),
+                          //     Column(
+                          //       crossAxisAlignment: CrossAxisAlignment.start,
+                          //       children: [
+                          //         Text(
+                          //           'عروسه ديفا المميزه كل الكلام ده وأكتر كمان هتسمعيه يوم فرحك بعد ما تختاري فستانك والميك اب مع ديفا ',
+                          //           style: TextStyle(fontSize: 14.sp),
+                          //           maxLines: 2,
+                          //           overflow: TextOverflow.ellipsis,
+                          //         ),
+                          //         SizedBox(
+                          //           height: 15.h,
+                          //         ),
+                          //         Container(
+                          //           child: ClipRRect(
+                          //             borderRadius: BorderRadius.circular(15.r),
+                          //             child: SizedBox(
+                          //               height: 169.r,
+                          //               width: double.infinity,
+                          //               child: Image(
+                          //                 image: AssetImage(
+                          //                     ImageRoot.dressImageFive),
+                          //                 fit: BoxFit.cover,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //         )
+                          //       ],
+                          //     )
+                          //   ],
+                          // ),
+                          ),
                       TextButton(
                         onPressed: () {
                           navigateTo(context, PostDetails());
@@ -269,13 +326,14 @@ class HomePage extends StatelessWidget {
                         height: 35.h,
                       ),
                     ),
-                    SizedBox(width: 8.w,),
+                    SizedBox(
+                      width: 8.w,
+                    ),
                     Container(
                       width: 35.w,
                       height: 35.h,
                       color: Colors.transparent,
-                      child:
-                      SvgPicture.asset('assets/svg/instagram2.svg'),
+                      child: SvgPicture.asset('assets/svg/instagram2.svg'),
                     ),
                   ],
                 ),
@@ -313,11 +371,11 @@ class HomePage extends StatelessWidget {
                         child: ViewGrid(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return InstaView(
-                              instagramView: InstagramList[index],
-                            );
-                          },
+                          itemBuilder: (BuildContext context, index) =>
+                              // ImagePost(media: instaDataList[index]),
+                              InstaView(
+                            media: instaDataList[index],
+                          ),
                           crossAxisCount: 2,
                           itemCount: 2,
                           childAspectRatio: 0.40,
@@ -326,8 +384,11 @@ class HomePage extends StatelessWidget {
                       Flexible(
                         child: TextButton(
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => InstagramPost(),
+                              ),
+                            );
                           },
                           child: Text(
                             'عرض الكل ',

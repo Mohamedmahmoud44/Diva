@@ -22,6 +22,7 @@ class ViewGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      clipBehavior: Clip.hardEdge,
       padding: const EdgeInsets.all(10),
       physics: physics,
       shrinkWrap: shrinkWrap,
