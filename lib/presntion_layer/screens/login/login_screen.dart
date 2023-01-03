@@ -14,7 +14,6 @@ import '../../home_page_layout.dart';
 import '../../widgets/already_have_account.dart';
 import '../../widgets/compnnents.dart';
 
-//lala
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -171,4 +170,20 @@ class LoginScreen extends StatelessWidget {
       },
     );
   }
+}
+
+ScaffoldFeatureController<SnackBar, SnackBarClosedReason> buildSnackError(
+    String error, context) {
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      duration: const Duration(seconds: 2),
+      backgroundColor: Colors.black,
+      content: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.02,
+        child: Center(
+          child: Text(error),
+        ),
+      ),
+    ),
+  );
 }

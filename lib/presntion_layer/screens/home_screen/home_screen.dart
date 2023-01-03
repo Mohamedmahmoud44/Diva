@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diva_final_project/cubit/facebook_posts/facebook_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' show Client;
@@ -10,6 +11,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/app_color.dart';
 import '../../../core/app_style.dart';
 import '../../../core/image_root.dart';
+import '../../../cubit/facebook_posts/facebook_states.dart';
 import '../../../models/carsouel_model.dart';
 import '../../../models/fb_data.dart';
 import '../../../models/instagram.dart';
@@ -28,8 +30,9 @@ import 'component/instagram_view.dart';
 import 'component/video_view_content.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key, }) : super(key: key);
-
+  HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -237,80 +240,51 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
-              Card(
-                child: Container(
-                  margin: EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      ...List.generate(
-                          1,
-                          (index) => FaceBookPosts(
-                                fbData: fbDataList[index],
-                              )
-                          //     Column(
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     SizedBox(
-                          //       height: 10,
-                          //     ),
-                          //     Row(
-                          //       children: [
-                          //         CircleAvatar(
-                          //           backgroundColor: Colors.transparent,
-                          //           radius: 25,
-                          //           backgroundImage:
-                          //               AssetImage(ImageRoot.divaLogo),
-                          //         ),
-                          //         SizedBox(
-                          //           width: 5,
-                          //         ),
-                          //         Text('divanice'),
-                          //       ],
-                          //     ),
-                          //     Column(
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         Text(
-                          //           'عروسه ديفا المميزه كل الكلام ده وأكتر كمان هتسمعيه يوم فرحك بعد ما تختاري فستانك والميك اب مع ديفا ',
-                          //           style: TextStyle(fontSize: 14.sp),
-                          //           maxLines: 2,
-                          //           overflow: TextOverflow.ellipsis,
-                          //         ),
-                          //         SizedBox(
-                          //           height: 15.h,
-                          //         ),
-                          //         Container(
-                          //           child: ClipRRect(
-                          //             borderRadius: BorderRadius.circular(15.r),
-                          //             child: SizedBox(
-                          //               height: 169.r,
-                          //               width: double.infinity,
-                          //               child: Image(
-                          //                 image: AssetImage(
-                          //                     ImageRoot.dressImageFive),
-                          //                 fit: BoxFit.cover,
-                          //               ),
-                          //             ),
-                          //           ),
-                          //         )
-                          //       ],
-                          //     )
-                          //   ],
-                          // ),
-                          ),
-                      TextButton(
-                        onPressed: () {
-                          navigateTo(context, PostDetails());
-                        },
-                        child: Text(
-                          'عرض الكل',
-                          style: bodyStyle.copyWith(color: Colors.black),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              BlocConsumer<FacebookPostsCubit, FacebookPostsStates>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  var cubit = FacebookPostsCubit.get(context);
+                  return Card(
+                    elevation: 10,
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          cubit.fbData?.feed?.data! != null
+                              ? SizedBox(
+                                  height: 500,
+                                  child: ListView.separated(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    separatorBuilder: (context, index) =>
+                                        SizedBox(
+                                      height: 15.h,
+                                    ),
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) =>
+                                        FaceBookPosts(
+                                      fbData: cubit.fbData!.feed!.data![index],
+                                    ),
+                                  ),
+                                )
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                          TextButton(
+                            onPressed: () {
+                              navigateTo(context, PostDetails());
+                            },
+                            child: Text(
+                              'عرض الكل',
+                              style: bodyStyle.copyWith(color: Colors.black),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 height: 20.h,

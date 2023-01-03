@@ -1,51 +1,43 @@
 class FBData {
+  Feed? feed;
   String? id;
-  String? name;
-  Posts? posts;
-  Picture? picture;
 
-  FBData({this.id, this.name, this.posts, this.picture});
+  FBData({this.feed, this.id});
 
   FBData.fromJson(Map<String, dynamic> json) {
+    feed = json['feed'] != null ? new Feed.fromJson(json['feed']) : null;
     id = json['id'];
-    name = json['name'];
-    posts = json['posts'] != null ? Posts.fromJson(json['posts']) : null;
-    picture =
-        json['picture'] != null ? Picture.fromJson(json['picture']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.feed != null) {
+      data['feed'] = this.feed!.toJson();
+    }
     data['id'] = this.id;
-    data['name'] = this.name;
-    if (this.posts != null) {
-      data['posts'] = this.posts!.toJson();
-    }
-    if (this.picture != null) {
-      data['picture'] = this.picture!.toJson();
-    }
     return data;
   }
 }
 
-class Posts {
+class Feed {
   List<Data>? data;
   Paging? paging;
 
-  Posts({this.data, this.paging});
+  Feed({this.data, this.paging});
 
-  Posts.fromJson(Map<String, dynamic> json) {
+  Feed.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
-    paging = json['paging'] != null ? Paging.fromJson(json['paging']) : null;
+    paging =
+        json['paging'] != null ? new Paging.fromJson(json['paging']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -60,22 +52,30 @@ class Data {
   String? permalinkUrl;
   String? message;
   String? fullPicture;
+  String? createdTime;
   String? id;
 
-  Data({this.permalinkUrl, this.message, this.fullPicture, this.id});
+  Data(
+      {this.permalinkUrl,
+      this.message,
+      this.fullPicture,
+      this.createdTime,
+      this.id});
 
   Data.fromJson(Map<String, dynamic> json) {
     permalinkUrl = json['permalink_url'];
     message = json['message'];
     fullPicture = json['full_picture'];
+    createdTime = json['created_time'];
     id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['permalink_url'] = this.permalinkUrl;
     data['message'] = this.message;
     data['full_picture'] = this.fullPicture;
+    data['created_time'] = this.createdTime;
     data['id'] = this.id;
     return data;
   }
@@ -89,12 +89,12 @@ class Paging {
 
   Paging.fromJson(Map<String, dynamic> json) {
     cursors =
-        json['cursors'] != null ? Cursors.fromJson(json['cursors']) : null;
+        json['cursors'] != null ? new Cursors.fromJson(json['cursors']) : null;
     next = json['next'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.cursors != null) {
       data['cursors'] = this.cursors!.toJson();
     }
@@ -115,52 +115,9 @@ class Cursors {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['before'] = this.before;
     data['after'] = this.after;
-    return data;
-  }
-}
-
-class Picture {
-  ProfileData? data;
-
-  Picture({this.data});
-
-  Picture.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? ProfileData.fromJson(json['data']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
-}
-
-class ProfileData {
-  int? height;
-  bool? isSilhouette;
-  String? url;
-  int? width;
-
-  ProfileData({this.height, this.isSilhouette, this.url, this.width});
-
-  ProfileData.fromJson(Map<String, dynamic> json) {
-    height = json['height'];
-    isSilhouette = json['is_silhouette'];
-    url = json['url'];
-    width = json['width'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['height'] = this.height;
-    data['is_silhouette'] = this.isSilhouette;
-    data['url'] = this.url;
-    data['width'] = this.width;
     return data;
   }
 }

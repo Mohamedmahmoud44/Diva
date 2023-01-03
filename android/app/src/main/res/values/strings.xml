@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Diva</string>
-  <string name="facebook_app_id">896076195081947</string>
-  <string name="fb_login_protocol_scheme">fb896076195081947</string>
-  <string name="facebook_client_token">5597043c1849e4dca4e17a9d347bc248</string>
+  <string name="app_name">DivaApp</string>
+  <string name="facebook_app_id">1522215154941216</string>
+  <string name="fb_login_protocol_scheme">fb1522215154941216</string>
+  <string name="facebook_client_token">9bc37b5793c1bf451b5fd0edf3b760f5</string>
 
 </resources>

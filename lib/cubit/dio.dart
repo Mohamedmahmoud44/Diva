@@ -4,8 +4,7 @@ class ApiServices {
   late Dio dio;
 
   ApiServices() {
-    BaseOptions baseOptions =
-        BaseOptions(baseUrl: 'https://graph.facebook.com/v15.0/me?fields=');
+    BaseOptions baseOptions = BaseOptions();
     dio = Dio(baseOptions);
     dio.interceptors.add(
       LogInterceptor(
