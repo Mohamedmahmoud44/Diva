@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'cubit/facebook_posts/facebook_cubit.dart';
 import 'cubit/home_page_cubit.dart';
+import 'cubit/instagram_posts/instagram_cubit.dart';
 import 'cubit/observer_cubit.dart';
 
 void main() async {
@@ -64,6 +65,9 @@ class MyApp extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => FacebookPostsCubit()..getAllPosts(),
+              ),
+              BlocProvider(
+                create: (context) => InstagramPostsCubit()..getAllPosts(),
               ),
             ],
             child: MaterialApp(
