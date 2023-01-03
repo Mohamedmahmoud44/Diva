@@ -31,7 +31,6 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   @override
   void initState() {
     loadVideo();
-    chewieController;
     super.initState();
   }
 
