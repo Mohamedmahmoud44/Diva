@@ -20,11 +20,10 @@ class FacebookPostsCubit extends Cubit<FacebookPostsStates> {
       apiServices
           .getData(
               url:
-                  'id%2Cname%2Cposts%7Bfull_picture%2Cmessage%7D&access_token=EAAMuZBf9MrtsBAOLGkZAiORfyFv8RXRZCcWUWeDrktPZCwj4RV88EDTJJ8yqCNtxQ5igb2zXEZAYOFw7MsMe45WUmgjkmZAxkmGuXwodUPVFbyXQDTPBhmBjEcwWqahCOlSh8ZB3eiFQH69ubC8ZAP9VSVPpNSaqyHUjpu8dZC5bc0CUvPhHsu2OH')
-          .then((value) async {
-        assert(value != null);
+                  'https://graph.facebook.com/v15.0/272272949882404?fields=feed%7Bpermalink_url%2Cmessage%2Cfull_picture%2Ccreated_time%7D&access_token=EAAVoclWUZCSABAGNTqVBF2RdwVPJKFk9sNFYsXwrxx9SOykbBQGg3BIeXtQNg3nOmFLn3MB8OavKPjuWawUJiyOlFceidJreT24DviNNTLTGR3zQt9ndY80VaaZBFNLxudd1MPlDpoal6gPevAuWCrFp7MXlhH2ChuZBDM0eKyoAgKyW0JOZADwtgCZBjZCtzJjohGkuv29gZDZD')
+          .then((value) {
         fbData = FBData.fromJson(JsonDecoder().convert(value.data));
-        // print(value.data.toString());
+        print(value.data.toString());
         emit(FacebookPostsSuccess());
       });
     } catch (e) {
