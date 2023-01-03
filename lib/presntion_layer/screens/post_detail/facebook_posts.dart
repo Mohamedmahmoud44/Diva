@@ -10,6 +10,7 @@ import '../../../core/app_style.dart';
 class FaceBookPosts extends StatelessWidget {
   final Data fbData;
 
+
   const FaceBookPosts({Key? key, required this.fbData}) : super(key: key);
 
   @override
@@ -76,7 +77,6 @@ class FaceBookPosts extends StatelessWidget {
               ),
               child: Container(
                 width: double.infinity,
-                height: 1.0,
                 color: Colors.grey[300],
               ),
             ),
@@ -84,7 +84,6 @@ class FaceBookPosts extends StatelessWidget {
               fbData.message!,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
-              style: bodyStyle2,
             ),
 
               Padding(
@@ -99,7 +98,7 @@ class FaceBookPosts extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                                     imageUrl: fbData.fullPicture!,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
               ),

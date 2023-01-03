@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,7 +28,8 @@ import 'component/instagram_view.dart';
 import 'component/video_view_content.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key, }) : super(key: key);
+
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -235,14 +237,14 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+
               Card(
                 child: Container(
                   margin: EdgeInsets.all(10),
-                  height: 1200,
                   child: Column(
                     children: [
                       ...List.generate(
-                          2,
+                          1,
                           (index) => FaceBookPosts(
                                 fbData: fbDataList[index],
                               )
