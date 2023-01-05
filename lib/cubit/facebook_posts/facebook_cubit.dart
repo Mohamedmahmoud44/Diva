@@ -20,7 +20,7 @@ class FacebookPostsCubit extends Cubit<FacebookPostsStates> {
       apiServices
           .getData(
               url:
-                  '272272949882404?fields=feed%7Bpermalink_url%2Cmessage%2Cfull_picture%2Ccreated_time%7D&access_token=EAAVoclWUZCSABAGNTqVBF2RdwVPJKFk9sNFYsXwrxx9SOykbBQGg3BIeXtQNg3nOmFLn3MB8OavKPjuWawUJiyOlFceidJreT24DviNNTLTGR3zQt9ndY80VaaZBFNLxudd1MPlDpoal6gPevAuWCrFp7MXlhH2ChuZBDM0eKyoAgKyW0JOZADwtgCZBjZCtzJjohGkuv29gZDZD')
+              '272272949882404?fields=feed%7Bmessage%2Cfull_picture%2Ccreated_time%2Cpermalink_url%2Clikes.summary(true)%7D&access_token=EAAVoclWUZCSABAIMxKyiMXI4jpsW2IoC6WlWAQ4mUA2LR0fkzr3vmSLyGFBrBPzTrBLZB0QyI9NwxRQYYlWZBrV1xy6N6SQdl8CYSQAHzEz38SX4gcGMiSv3243NjDCbswf0Bx40HNLZATUfqPhZBZAKqoA6crHSa9sHj5NSpl6W6YeBFTWtKWHOYxmcPrhogZD')
           .then((value) {
         fbData = FBData.fromJson(JsonDecoder().convert(value.data));
         print(value.data.toString());

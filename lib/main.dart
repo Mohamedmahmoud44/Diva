@@ -1,10 +1,11 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:diva_final_project/cubit/log_in/log_in_cubit.dart';
-import 'package:diva_final_project/presntion_layer/screens/splash/spalsh_screen.dart';
+import 'package:diva_final_project/presntion_layer/screens/on_boarding/on_boarding_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'cubit/facebook_posts/facebook_cubit.dart';
@@ -14,6 +15,7 @@ import 'cubit/observer_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // await CacheHelper.inIt();
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
@@ -84,7 +86,7 @@ class MyApp extends StatelessWidget {
                 ),
                 debugShowCheckedModeBanner: false,
                 // home: startWidget,
-                home: SplashScreen()),
+                home:OnBoardingScreen()),
           );
         });
   }

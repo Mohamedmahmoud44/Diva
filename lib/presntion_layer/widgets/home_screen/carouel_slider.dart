@@ -30,7 +30,7 @@ class CarouselSliderView extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'فساتين أفراح 2022  ',
+                    'فساتين أفراح 2023  ',
                     style: bodyStyle,
                     textAlign: TextAlign.center,
                   ),

@@ -12,16 +12,19 @@ import '../../../core/app_color.dart';
 import '../../../core/app_style.dart';
 import '../../../core/image_root.dart';
 import '../../../cubit/facebook_posts/facebook_states.dart';
+import '../../../cubit/instagram_posts/instagram_cubit.dart';
+import '../../../cubit/instagram_posts/instagram_states.dart';
 import '../../../models/carsouel_model.dart';
-import '../../../models/fb_data.dart';
 import '../../../models/instagram.dart';
 import '../../../models/video_model.dart';
 import '../../../size_config.dart';
+import '../../widgets/build_social_icon.dart';
+import '../../widgets/build_social_media_icon.dart';
 import '../../widgets/compnnents.dart';
-import '../../widgets/components/show_all.dart';
 import '../../widgets/home_screen/artcile_view.dart';
 import '../../widgets/home_screen/carouel_slider.dart';
 import '../../widgets/home_screen/grid_view.dart';
+import '../../widgets/home_screen/show_all.dart';
 import '../../widgets/text_kota.dart';
 import '../instagram/instagram.dart';
 import '../post_detail/facebook_posts.dart';
@@ -40,9 +43,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PageController pageController = PageController();
-  String fbUrl =
-      'https://graph.facebook.com/v15.0/106092821872383?fields=feed%7Bpermalink_url%2Cmessage%2Cfull_picture%7D&access_token=EAAMuZBf9MrtsBAOLGkZAiORfyFv8RXRZCcWUWeDrktPZCwj4RV88EDTJJ8yqCNtxQ5igb2zXEZAYOFw7MsMe45WUmgjkmZAxkmGuXwodUPVFbyXQDTPBhmBjEcwWqahCOlSh8ZB3eiFQH69ubC8ZAP9VSVPpNSaqyHUjpu8dZC5bc0CUvPhHsu2OH';
-  List<Data> fbDataList = [];
   Client client = Client();
   String instaUrl =
       'https://graph.facebook.com/v15.0/17841445284244108?fields=media_count%2Cbusiness_discovery.username(magic_mashallah_store)%7Bfollowers_count%2Cmedia%7Bmedia_url%2Cmedia_product_type%2Ccaption%2Cmedia_type%2Cpermalink%2Ctimestamp%7D%7D&access_token=EAAMuZBf9MrtsBAFNUhRCpVv84auk9Sw0rqWHrnTzByAYyBolRptdyVZBfidskmjzzph6620kOdJaACRb7R9aDOQRiPvten7dxyFcZBqq1HSIPNTG6Sgoe5UPysHCzYpyUKVX2A46CLNse3qt7QXbZBsdVBjIWCGTSddosq0yUzEIIZBkTDO5Y';
@@ -50,23 +50,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    fetchData();
     fetchInstagramData();
     super.initState();
-  }
-
-  Future fetchData() async {
-    try {
-      final response = await client.get(Uri.parse(fbUrl));
-      if (response.statusCode == 200) {
-        Iterable i = json.decode(response.body)['feed']['data'];
-        setState(() {
-          fbDataList = i.map((data) => Data.fromJson(data)).toList();
-        });
-      }
-    } catch (e) {
-      print(e.toString());
-    }
   }
 
   Future fetchInstagramData() async {
@@ -87,6 +72,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     SizeConfig().init(context);
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -215,27 +202,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              BuildSocialMediaIcons(),
+              SizedBox(height: height * 0.02),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'Facebook',
-                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                    BuildIcon(
+                      widget: SvgPicture.asset(
+                        'assets/svg/Facebook_Logo_(2015)_light.svg',
+                        height: height * 0.03,
+                        color: Colors.black,
                       ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 30,
-                      height: 30,
-                      color: Colors.transparent,
-                      child:
-                          SvgPicture.asset('assets/svg/facebook-logo-2019.svg'),
                     ),
                   ],
                 ),
@@ -248,40 +227,37 @@ class _HomePageState extends State<HomePage> {
                   var cubit = FacebookPostsCubit.get(context);
                   return Card(
                     elevation: 10,
-                    child: Container(
-                      margin: EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          cubit.fbData?.feed?.data! != null
-                              ? SizedBox(
-                                  height: 500,
-                                  child: ListView.separated(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    separatorBuilder: (context, index) =>
-                                        SizedBox(
-                                      height: 15.h,
-                                    ),
-                                    itemCount: 1,
-                                    itemBuilder: (context, index) =>
-                                        FaceBookPosts(
-                                      fbData: cubit.fbData!.feed!.data![index],
-                                    ),
+                    child: Column(
+                      children: [
+                        cubit.fbData?.feed?.data! != null
+                            ? SizedBox(
+                                height: 500,
+                                child: ListView.separated(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(
+                                    height: 15.h,
                                   ),
-                                )
-                              : Center(
-                                  child: CircularProgressIndicator(),
+                                  itemCount: 1,
+                                  itemBuilder: (context, index) =>
+                                      FaceBookPosts(
+                                    fbData: cubit.fbData!.feed!.data![index],
+                                  ),
                                 ),
-                          TextButton(
-                            onPressed: () {
-                              navigateTo(context, PostDetails());
-                            },
-                            child: Text(
-                              'عرض الكل',
-                              style: bodyStyle.copyWith(color: Colors.black),
-                            ),
-                          )
-                        ],
-                      ),
+                              )
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                        TextButton(
+                          onPressed: () {
+                            navigateTo(context, PostDetails());
+                          },
+                          child: Text(
+                            'عرض الكل',
+                            style: bodyStyle.copyWith(color: Colors.black),
+                          ),
+                        )
+                      ],
                     ),
                   );
                 },
@@ -292,24 +268,14 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: SvgPicture.asset(
+                    BuildIcon(
+                      widget: SvgPicture.asset(
                         'assets/svg/ic_instagram.svg',
-                        height: 35.h,
+                        height: height * 0.05,
+                        color: Colors.black,
                       ),
-                    ),
-                    SizedBox(
-                      width: 8.w,
-                    ),
-                    Container(
-                      width: 35.w,
-                      height: 35.h,
-                      color: Colors.transparent,
-                      child: SvgPicture.asset('assets/svg/instagram2.svg'),
                     ),
                   ],
                 ),
@@ -344,17 +310,34 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(
                         height: 300.h,
-                        child: ViewGrid(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, index) =>
-                              // ImagePost(media: instaDataList[index]),
-                              InstaView(
-                            media: instaDataList[index],
-                          ),
-                          crossAxisCount: 2,
-                          itemCount: 2,
-                          childAspectRatio: 0.40,
+                        child: BlocConsumer<InstagramPostsCubit,
+                            InstagramPostsStates>(
+                          listener: (context, state) {
+                            // TODO: implement listener
+                          },
+                          builder: (context, state) {
+                            var cubit = InstagramPostsCubit.get(context);
+                            if (cubit
+                                    .instData?.businessDiscovery?.media?.data !=
+                                null) {
+                              return ViewGrid(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, index) =>
+                                    // ImagePost(media: instaDataList[index]),
+                                    InstaView(
+                                  media: cubit.instData!.businessDiscovery!
+                                      .media!.data![index],
+                                ),
+                                crossAxisCount: 2,
+                                itemCount: 2,
+                                childAspectRatio: 0.40,
+                              );
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                         ),
                       ),
                       Flexible(
@@ -376,10 +359,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(10.0),
                 child: ShowAll(
-                  title: 'فيديوهات الفنانات والمشاهير  ',
+                  text: 'فيديوهات الفنانات والمشاهير ',
+                  onTap: () {},
                 ),
               ),
               SizedBox(
