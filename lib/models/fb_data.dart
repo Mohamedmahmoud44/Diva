@@ -49,34 +49,67 @@ class Feed {
 }
 
 class Data {
-  String? permalinkUrl;
   String? message;
   String? fullPicture;
   String? createdTime;
+  String? permalinkUrl;
+  Likes? likes;
   String? id;
 
   Data(
-      {this.permalinkUrl,
-      this.message,
+      {this.message,
       this.fullPicture,
       this.createdTime,
+      this.permalinkUrl,
+      this.likes,
       this.id});
 
   Data.fromJson(Map<String, dynamic> json) {
-    permalinkUrl = json['permalink_url'];
     message = json['message'];
     fullPicture = json['full_picture'];
     createdTime = json['created_time'];
+    permalinkUrl = json['permalink_url'];
+    likes = json['likes'] != null ? new Likes.fromJson(json['likes']) : null;
     id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['permalink_url'] = this.permalinkUrl;
     data['message'] = this.message;
     data['full_picture'] = this.fullPicture;
     data['created_time'] = this.createdTime;
+    data['permalink_url'] = this.permalinkUrl;
+    if (this.likes != null) {
+      data['likes'] = this.likes!.toJson();
+    }
     data['id'] = this.id;
+    return data;
+  }
+}
+
+class Likes {
+  Paging? paging;
+  Summary? summary;
+
+  Likes({this.paging, this.summary});
+
+  Likes.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {}
+    paging =
+        json['paging'] != null ? new Paging.fromJson(json['paging']) : null;
+    summary =
+        json['summary'] != null ? new Summary.fromJson(json['summary']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+
+    if (this.paging != null) {
+      data['paging'] = this.paging!.toJson();
+    }
+    if (this.summary != null) {
+      data['summary'] = this.summary!.toJson();
+    }
     return data;
   }
 }
@@ -118,6 +151,28 @@ class Cursors {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['before'] = this.before;
     data['after'] = this.after;
+    return data;
+  }
+}
+
+class Summary {
+  int? totalCount;
+  bool? canLike;
+  bool? hasLiked;
+
+  Summary({this.totalCount, this.canLike, this.hasLiked});
+
+  Summary.fromJson(Map<String, dynamic> json) {
+    totalCount = json['total_count'];
+    canLike = json['can_like'];
+    hasLiked = json['has_liked'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['total_count'] = this.totalCount;
+    data['can_like'] = this.canLike;
+    data['has_liked'] = this.hasLiked;
     return data;
   }
 }

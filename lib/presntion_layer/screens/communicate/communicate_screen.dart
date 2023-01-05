@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../widgets/build_social_media_icon.dart';
 import '../../widgets/custom_app_bar.dart';
 
 class CommunicateScreen extends StatelessWidget {
@@ -29,29 +30,39 @@ class CommunicateScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      width: 60.r,
-                      height: 50.r,
-                      color: Colors.grey[100],
-                      child: Image.asset('assets/icons/facebook.png'),
-                    ),
-                    Container(
-                      width: 60,
-                      height: 50,
-                      color: Colors.grey[100],
-                      child: Image.asset('assets/icons/messenger.png'),
-                    ),
-                    Container(
-                      width: 60,
-                      height: 50,
-                      color: Colors.grey[100],
-                      child: Image.asset('assets/icons/whats.png'),
-                    ),
-                  ],
-                ),
+                BuildSocialMediaIcons(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     InkWell(
+                //       onTap: () async {
+                //         if (!await launchUrl(
+                //             Uri.parse('fb://page/101153221431357'),
+                //             mode: LaunchMode.externalApplication)) {
+                //           throw 'Could not launch ${'https://www.facebook.com/groups/423627601023820/?hoisted_section_header_type=recently_seen&multi_permalinks=5709142729138921'}';
+                //         }
+                //       },
+                //       child: Container(
+                //         width: 60.r,
+                //         height: 50.r,
+                //         color: Colors.grey[100],
+                //         child: Image.asset('assets/icons/facebook.png'),
+                //       ),
+                //     ),
+                //     Container(
+                //       width: 60,
+                //       height: 50,
+                //       color: Colors.grey[100],
+                //       child: Image.asset('assets/icons/messenger.png'),
+                //     ),
+                //     Container(
+                //       width: 60,
+                //       height: 50,
+                //       color: Colors.grey[100],
+                //       child: Image.asset('assets/icons/whats.png'),
+                //     ),
+                //   ],
+                // ),
                 SizedBox(
                   height: 20,
                 ),

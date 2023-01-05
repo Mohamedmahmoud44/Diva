@@ -26,6 +26,7 @@ class HomePageLayoutScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = HomePageCubit.get(context);
         return Scaffold(
+          backgroundColor: AppColor.whiteColor,
           appBar: CustomAppBar(
             title: cubit.titleList[cubit.currentIndex],
             appBar: AppBar(),
