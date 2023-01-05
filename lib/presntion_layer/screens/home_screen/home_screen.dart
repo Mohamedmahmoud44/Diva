@@ -254,14 +254,14 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           cubit.fbData?.feed?.data! != null
                               ? SizedBox(
-                                  height: 500,
+                                  height: 900,
                                   child: ListView.separated(
                                     physics: NeverScrollableScrollPhysics(),
                                     separatorBuilder: (context, index) =>
                                         SizedBox(
                                       height: 15.h,
                                     ),
-                                    itemCount: 1,
+                                    itemCount: 2,
                                     itemBuilder: (context, index) =>
                                         FaceBookPosts(
                                       fbData: cubit.fbData!.feed!.data![index],
