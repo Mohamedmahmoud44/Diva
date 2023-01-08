@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:diva_final_project/cubit/log_in/log_in_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +39,7 @@ class LoginCubit extends Cubit<LoginStates> {
         // final userDataa =
         //     await FacebookAuth.instance.getUserData(fields: 'email');
         // userData = userDataa;
-        log(token.toString());
+        // log(token.toString());
       } else {
         print(result.status);
         print(result.message);
@@ -78,7 +76,7 @@ class LoginCubit extends Cubit<LoginStates> {
       //   print('$user.email');
       // }
       token = authentication.idToken;
-      log('Google Token IS $token');
+      // log('Google Token IS $token');
       emit(LoginSuccess());
     } catch (e) {
       emit(LoginFail(error: e.toString()));

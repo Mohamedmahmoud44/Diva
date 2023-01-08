@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.12"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      sha256: "37392a5376c9a1a503b02463c38bc0342ef814ddbb8f9977bc90f2a84b22fa92"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   archive:
     dependency: transitive
     description:
@@ -121,30 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  cloud_firestore:
-    dependency: "direct main"
-    description:
-      name: cloud_firestore
-      sha256: a851106a2169c15614047b75ea10d0346650352c6669ab482306572aa4ed9a7d
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.3.1"
-  cloud_firestore_platform_interface:
-    dependency: transitive
-    description:
-      name: cloud_firestore_platform_interface
-      sha256: "1fac512fef2bfe84ca7f372defbd9dd8efb108be96854db9023739a5b2aa9977"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.10.1"
-  cloud_firestore_web:
-    dependency: transitive
-    description:
-      name: cloud_firestore_web
-      sha256: "3fd9581c1447b6e8db6d0f19d0140b196a70ecf582bd1f71e7141fe9abf10ddb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.1"
   collection:
     dependency: transitive
     description:
@@ -297,6 +281,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  floating_action_bubble:
+    dependency: "direct main"
+    description:
+      name: floating_action_bubble
+      sha256: "760fd392eaf01e5bccf58889ceaf98d3e90f51066a7efd426d5db5888528931a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -419,14 +411,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.3"
-  flutter_staggered_grid_view:
-    dependency: "direct main"
-    description:
-      name: flutter_staggered_grid_view
-      sha256: "1312314293acceb65b92754298754801b0e1f26a1845833b740b30415bbbcf07"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -445,6 +429,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_widget_from_html_core:
+    dependency: "direct main"
+    description:
+      name: flutter_widget_from_html_core
+      sha256: "71ebb7ff9ff5a8a17bd2dfedcfbd461b3dbff392e7b90f11732a2bf1888ca616"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.0+2"
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -461,14 +453,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-  get:
-    dependency: "direct main"
+  fwfh_text_style:
+    dependency: transitive
     description:
-      name: get
-      sha256: "2ba20a47c8f1f233bed775ba2dd0d3ac97b4cf32fc17731b3dfc672b06b0e92a"
+      name: fwfh_text_style
+      sha256: "37806ee0222f79b6e8d4c698c322c897eae6a817258156f40aeece4e588fac60"
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.5"
+    version: "2.22.08+1"
   google_fonts:
     dependency: "direct main"
     description:
@@ -526,7 +518,7 @@ packages:
     source: hosted
     version: "0.15.1"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
@@ -1082,38 +1074,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      name: webview_flutter
-      sha256: "2f6d1bfa619a5126cc060f55b78e1703ed3ce0b707bc037bfe5000812764fc12"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.1"
-  webview_flutter_android:
-    dependency: "direct main"
-    description:
-      name: webview_flutter_android
-      sha256: d761501c5701ff60a48590511d24061a5fab3286a77cf18c01b028b815be64cd
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.1"
-  webview_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: webview_flutter_platform_interface
-      sha256: "461c4b749048761f8677f529e0841e634e987bd2251c83a9d9b066216818fc7c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  webview_flutter_wkwebview:
-    dependency: transitive
-    description:
-      name: webview_flutter_wkwebview
-      sha256: efc8f193635f4c33f9099613db80db8b7fa752f70352bef2404f79e8ab68e649
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
   win32:
     dependency: transitive
     description:
