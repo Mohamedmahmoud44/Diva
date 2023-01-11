@@ -10,7 +10,7 @@ class Caption extends StatelessWidget {
     required this.media,
   });
 
-  final Data media;
+  final FacebookData media;
 
   @override
   Widget build(BuildContext context) {

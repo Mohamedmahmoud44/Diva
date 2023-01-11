@@ -6,7 +6,7 @@ class DioHelper {
   static init() {
     BaseOptions baseOptions = BaseOptions(
         baseUrl: 'https://divanice.com/rest/',
-        receiveDataWhenStatusError: true,
+        // receiveDataWhenStatusError: true,
         headers: {
           'Content-Type': 'application/json',
         });

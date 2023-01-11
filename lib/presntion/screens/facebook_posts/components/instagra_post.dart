@@ -12,7 +12,7 @@ class ImagePost extends StatelessWidget {
     Key? key,
     required this.media,
   }) : super(key: key);
-  final Data media;
+  final FacebookData media;
 
   @override
   Widget build(BuildContext context) {

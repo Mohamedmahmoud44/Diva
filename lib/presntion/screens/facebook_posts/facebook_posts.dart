@@ -5,13 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../models/model/facebook_data.dart';
 
 class FaceBookPosts extends StatelessWidget {
-  final Data fbData;
+  final FacebookData fbData;
 
   FaceBookPosts({Key? key, required this.fbData}) : super(key: key);
 
-// var message=fbData.message!=null?fbData.message:'';
   @override
   Widget build(BuildContext context) {
+    var message = fbData.message != null ? fbData.message : '';
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       elevation: 5.0,

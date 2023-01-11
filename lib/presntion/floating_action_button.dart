@@ -2,6 +2,8 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../core/app_color.dart';
+
 class Floating extends StatefulWidget {
   const Floating({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class _FloatingState extends State<Floating>
         Bubble(
           title: "Facebook",
           iconColor: Colors.white,
-          bubbleColor: Colors.blue,
+          bubbleColor: AppColor.pinkColor,
           icon: FontAwesomeIcons.facebook,
           titleStyle: TextStyle(fontSize: 16, color: Colors.white),
           onPress: () {
@@ -48,7 +50,7 @@ class _FloatingState extends State<Floating>
         Bubble(
           title: "Messenger",
           iconColor: Colors.white,
-          bubbleColor: Colors.blue,
+          bubbleColor: AppColor.pinkColor,
           icon: FontAwesomeIcons.facebookMessenger,
           titleStyle: TextStyle(fontSize: 16, color: Colors.white),
           onPress: () {
@@ -59,7 +61,7 @@ class _FloatingState extends State<Floating>
         Bubble(
           title: "Instagram",
           iconColor: Colors.white,
-          bubbleColor: Colors.blue,
+          bubbleColor: AppColor.pinkColor,
           icon: FontAwesomeIcons.instagram,
           titleStyle: TextStyle(fontSize: 16, color: Colors.white),
           onPress: () {
@@ -77,11 +79,11 @@ class _FloatingState extends State<Floating>
           : _animationController.forward(),
 
       // Floating Action button Icon color
-      iconColor: Colors.blue,
+      iconColor: AppColor.pinkColor,
 
       // Flaoting Action button Icon
-      iconData: FontAwesomeIcons.solidCirclePause,
-      backGroundColor: Colors.white,
+      iconData: FontAwesomeIcons.shareNodes,
+      backGroundColor: AppColor.whiteColor,
     );
   }
 }

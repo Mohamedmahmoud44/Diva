@@ -7,17 +7,17 @@ class ApiServices {
     BaseOptions baseOptions =
         BaseOptions(baseUrl: 'https://graph.facebook.com/v15.0/');
     dio = Dio(baseOptions);
-    // dio.interceptors.add(
-    //   LogInterceptor(
-    //     request: true,
-    //     requestHeader: true,
-    //     requestBody: true,
-    //     responseHeader: true,
-    //     responseBody: true,
-    //     error: true,
-    //     logPrint: print,
-    //   ),
-    // );
+    dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: true,
+        responseBody: true,
+        error: true,
+        logPrint: print,
+      ),
+    );
   }
 
   Future getData({required String url}) async {

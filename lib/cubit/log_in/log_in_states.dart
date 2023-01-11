@@ -48,17 +48,28 @@ class FacebookLogoutFail extends LoginStates {
 
   FacebookLogoutFail({required this.error});
 }
+
 //============================================================================================================================================
-//login state
+//GOOGLE SIGN OUT STATES
+class GoogleLogoutLoadingState extends LoginStates {}
 
-class LoginInitialState extends LoginStates {}
+class GoogleLogoutSuccessState extends LoginStates {}
 
-class LoginLoadingState extends LoginStates {}
-
-class ShopLoginSuccessState extends LoginStates {}
-
-class ShopLoginErrorState extends LoginStates {
+class GoogleLogoutFailState extends LoginStates {
   final String error;
-
-  ShopLoginErrorState(this.error);
+  GoogleLogoutFailState({required this.error});
 }
+
+// login state
+//
+// class LoginInitialState extends LoginStates {}
+//
+// class LoginLoadingState extends LoginStates {}
+//
+// class ShopLoginSuccessState extends LoginStates {}
+//
+// class ShopLoginErrorState extends LoginStates {
+//   final String error;
+//
+//   ShopLoginErrorState(this.error);
+// }

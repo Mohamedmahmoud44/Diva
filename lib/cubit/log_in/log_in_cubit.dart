@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:diva_final_project/cubit/log_in/log_in_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +26,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
   Future<void> login() async {
     try {
-      emit(LoginLoading());
+      emit(FacebookLoginLoading());
       final LoginResult result = await FacebookAuth.instance
           .login(); // by default we request the email and the public profile
 
@@ -39,23 +41,31 @@ class LoginCubit extends Cubit<LoginStates> {
         // final userDataa =
         //     await FacebookAuth.instance.getUserData(fields: 'email');
         // userData = userDataa;
-        // log(token.toString());
+        log(token.toString());
       } else {
         print(result.status);
         print(result.message);
       }
-      emit(LoginSuccess());
+      emit(FacebookLoginSuccess());
     } catch (e) {
-      emit(LoginFail(error: e.toString()));
+      emit(FacebookLoginFail(error: e.toString()));
       print(e.toString());
     }
   }
 
   Future<void> logOut() async {
-    await FacebookAuth.instance.logOut();
-    token = null;
+    emit(FacebookLogoutLoading());
+    try {
+      await FacebookAuth.instance.logOut();
+      token = null;
+      emit(FacebookLogoutSuccess());
+    } catch (e) {
+      log(e.toString());
+      emit(FacebookLogoutFail(error: e.toString()));
+    }
+
     // userData = null;
-    emit(FacebookLogoutSuccess());
+    // emit(FacebookLogoutSuccess());
   }
 
 //===========================================================================================================================================
@@ -63,29 +73,39 @@ class LoginCubit extends Cubit<LoginStates> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future<void> signInWithGoogle() async {
-    emit(LoginLoading());
+    emit(GoogleLoginLoading());
     try {
       GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
       GoogleSignInAuthentication authentication =
           await googleSignInAccount!.authentication;
       AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: authentication.accessToken,
         idToken: authentication.idToken,
       );
       // final user = (await auth.signInWithCredential(credential)).user;
       // if (user != null) {
       //   print('$user.email');
       // }
+      token = authentication.accessToken;
       token = authentication.idToken;
-      // log('Google Token IS $token');
-      emit(LoginSuccess());
+      log('Google Token IS ${authentication.accessToken}||\n ${authentication.idToken}');
+      emit(GoogleLoginSuccess());
     } catch (e) {
-      emit(LoginFail(error: e.toString()));
+      emit(GoogleLoginFail(error: e.toString()));
       print(e.toString());
     }
   }
 
   Future<void> signOut() async {
-    await _googleSignIn.signOut();
+    emit(GoogleLogoutLoadingState());
+    try {
+      await _googleSignIn.signOut();
+      token = null;
+      emit(GoogleLogoutSuccessState());
+    } catch (e) {
+      log(e.toString());
+      emit(GoogleLogoutFailState(error: e.toString()));
+    }
   }
 //======================================================================================================================================================
 }

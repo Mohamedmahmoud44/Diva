@@ -8,7 +8,7 @@ import '../../../../models/model/facebook_data.dart';
 class ImagesPageView extends StatelessWidget {
   const ImagesPageView({super.key, required this.media, this.aspectRatio = 1});
 
-  final Data media;
+  final FacebookData media;
   final double aspectRatio;
 
   @override

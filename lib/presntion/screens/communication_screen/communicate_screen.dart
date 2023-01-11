@@ -16,8 +16,14 @@ class CommunicateScreen extends StatelessWidget {
       appBar: CustomAppBar(
         appBar: AppBar(),
         title: 'اتصل بنا',
-        leadingIcon: BackButton(
-          color: AppColor.blackColor,
+        leadingIcon: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: AppColor.blackColor,
+          ),
         ),
       ),
       body: Directionality(

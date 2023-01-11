@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/app_color.dart';
 import '../../widgets/custom_app_bar.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -13,13 +14,14 @@ class NotificationScreen extends StatelessWidget {
         appBar: AppBar(),
         title: 'الاشعارات',
         leadingIcon: IconButton(
-          onPressed: ()
-          {
+          onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: AppColor.blackColor,
+          ),
         ),
-
       ),
       body: SafeArea(
         child: Directionality(

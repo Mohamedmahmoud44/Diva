@@ -14,6 +14,7 @@ import '../../widgets/custom_app_bar.dart';
 import '../notification_screen/notification_screen.dart';
 import 'components/drawer_content.dart';
 import 'components/drawer_header_content.dart';
+import 'components/logout_button.dart';
 
 class HomePageLayoutScreen extends StatelessWidget {
   const HomePageLayoutScreen({Key? key}) : super(key: key);
@@ -73,6 +74,7 @@ class HomePageLayoutScreen extends StatelessWidget {
                   ),
                   itemCount: drawerList.length,
                 ),
+                LogoutButton(),
                 SizedBox(
                   height: height * 0.08,
                 ),

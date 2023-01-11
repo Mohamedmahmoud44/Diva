@@ -9,7 +9,7 @@ class BuildSocialMediaIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         BuildIcon(
           widget: SvgPicture.asset('assets/svg/icons8-facebook.svg'),
