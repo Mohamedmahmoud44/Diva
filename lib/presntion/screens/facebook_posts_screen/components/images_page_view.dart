@@ -27,10 +27,10 @@ class ImagesPageView extends StatelessWidget {
               }
             },
             child: Container(
-              child: CachedNetworkImage(
+              child: media.fullPicture!=null?CachedNetworkImage(
                 imageUrl: media.fullPicture!,
                 fit: BoxFit.cover,
-              ),
+              ):Container(),
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/app_color.dart';
 import '../../../../core/app_style.dart';
@@ -25,8 +26,8 @@ class InstaDesign extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Container(
-                    width: 50,
-                    height: 50,
+                    width: 50.r,
+                    height: 50.r,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
@@ -35,25 +36,20 @@ class InstaDesign extends StatelessWidget {
                             fit: BoxFit.cover)),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: width * 0.03,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         'Imac',
-                        style: TextStyle(
-                            color: Colors.grey[900],
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1),
-                      ),
-                      SizedBox(
-                        height: 3,
+                        style: bodyStyle4.copyWith(
+                            color: AppColor.blackColor, wordSpacing: 0.5),
                       ),
                       Text(
-                        '${DateTime.now().difference(DateTime.parse(media.timestamp!)).inDays} D',
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
+                        '${DateFormat('yyyy/MMMM/dd').format(DateTime.parse(media.timestamp!))}',
+                        style: buttonStyle.copyWith(
+                            fontSize: 12.sp, color: AppColor.blackHeader),
                       ),
                     ],
                   )
@@ -62,10 +58,10 @@ class InstaDesign extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: height * 0.02,
           ),
           Text(
-            media.caption!,
+            media.caption!=null?  media.caption!:'',
             maxLines: 3,
             style: TextStyle(
                 fontSize: 15,
@@ -74,20 +70,20 @@ class InstaDesign extends StatelessWidget {
                 letterSpacing: .7),
           ),
           SizedBox(
-            height: 20,
+            height: height * 0.02,
           ),
-          media.mediaUrl != ''
+          media.mediaUrl != null
               ? Container(
-                  height: 200,
+              height:height * 0.32,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
                           image: CachedNetworkImageProvider(media.mediaUrl!),
                           fit: BoxFit.cover)),
                 )
               : Container(),
           SizedBox(
-            height: 20,
+            height: height * 0.02,
           ),
           Row(
             children: [
@@ -98,7 +94,7 @@ class InstaDesign extends StatelessWidget {
                     color: media.likeCount != null
                         ? AppColor.pinkColor
                         : AppColor.whiteColor,
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   child: Icon(
                     Icons.favorite,
@@ -125,25 +121,9 @@ class InstaDesign extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 20,
-          ),
         ],
       ),
     );
   }
 }
 
-Widget makeLove() {
-  return Container(
-    width: 25,
-    height: 25,
-    decoration: BoxDecoration(
-        color: Colors.red,
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white)),
-    child: Center(
-      child: Icon(Icons.favorite, size: 12, color: Colors.white),
-    ),
-  );
-}

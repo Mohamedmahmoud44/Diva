@@ -41,24 +41,26 @@ class FaceBookPost extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: Text(
-                        'Explore',
-                        style: titleStyle.copyWith(
-                            color: AppColor.blackColor, fontSize: 30.sp),
-                      )),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Text(
+                      'Explore',
+                      style: titleStyle.copyWith(
+                          color: AppColor.blackColor, fontSize: 30.sp),
+                    ),
+                  ),
                   if (cubit.fbData?.feed?.data?.length != null)
                     ...List.generate(
                       cubit.fbData!.feed!.data!.length,
-                      (index) => ImagePost(
-                        media: cubit.fbData!.feed!.data![index],
+                      (index) => Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: ImagePost(
+                          media: cubit.fbData!.feed!.data![index],
+                          data: cubit.fbData!.picture!.data!,
+                        ),
                       ),
                     ),
-                  Center(
-                    child: CircularProgressIndicator(),
-                  )
                 ],
               ),
             ),

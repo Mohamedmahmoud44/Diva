@@ -2,14 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:diva_final_project/core/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/app_style.dart';
 import '../../../../models/model/facebook_data.dart';
 
 class PostGeneralInformation extends StatelessWidget {
-  const PostGeneralInformation({Key? key, required this.media})
+  const PostGeneralInformation(
+      {Key? key, required this.media, required this.data})
       : super(key: key);
   final FacebookData media;
+  final Data data;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +34,7 @@ class PostGeneralInformation extends StatelessWidget {
                 radius: 20.r,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.r),
-                  child: CachedNetworkImage(
-                      imageUrl:
-                          'https://scontent.fcai19-1.fna.fbcdn.net/v/t39.30808-1/247703329_106996895115309_5456948272008808798_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=104&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=x-rpsqXNF0EAX_KbLTs&_nc_ht=scontent.fcai19-1.fna&edm=AJdBtusEAAAA&oh=00_AfCrOPUpjfrrql57sacXqKA-ddueghvZ4TThSidnEcrQJQ&oe=63BC7124'),
+                  child: CachedNetworkImage(imageUrl: data.url!),
                 ),
               ),
             ),
@@ -44,14 +45,16 @@ class PostGeneralInformation extends StatelessWidget {
               children: [
                 Semantics(
                   label: "author name",
-                  child: Text('Imac',
+                  child: Text('Divanice',
                       style: bodyStyle2.copyWith(
                           fontSize: 12.sp, fontWeight: FontWeight.bold)),
                 ),
                 Semantics(
                   label: "time of publish differance from now",
                   child: Text(
-                    '${DateTime.now().difference(DateTime.parse(media.createdTime!)).inHours} min ago',
+                    '${DateFormat('yyy,MMM,dd').format(
+                      DateTime.parse(media.createdTime!),
+                    )}',
                     style: bodyStyle4.copyWith(color: AppColor.darkGreyHeader),
                   ),
                 ),

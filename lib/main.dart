@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:device_preview/device_preview.dart';
 import 'package:diva_final_project/cubit/facebook_video/facebook_video_cubit.dart';
 import 'package:diva_final_project/cubit/log_in/log_in_cubit.dart';
 import 'package:diva_final_project/cubit/log_out/log_out_cubit.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_version/new_version.dart';
 
 import 'core/strings.dart';
 import 'cubit/facebook_posts/facebook_cubit.dart';
@@ -45,13 +45,45 @@ void main() async {
   // runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp(this.startWidget, this.token, {super.key});
 
   // MyApp({super.key});
 
   final Widget startWidget;
   final String? token;
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void checkVersion() async {
+    final newVersion = NewVersion(
+      androidId: 'com.example.diva_final_project',
+    );
+    final status = await newVersion.getVersionStatus();
+    newVersion.showUpdateDialog(
+        context: context,
+        versionStatus: status!,
+        dialogTitle: 'Update',
+        dismissButtonText: 'Skip',
+        dialogText: 'please update the app from ' +
+            '${status.localVersion}' +
+            'to' +
+            '${status.storeVersion}',
+        dismissAction: () {
+          SystemNavigator.pop();
+        },
+        updateButtonText: 'Lets update');
+    log('DEVISE:  ' + status.localVersion);
+    log('DEVISE:  ' + status.storeVersion);
+  }
+
+  void initState() {
+    super.initState();
+    checkVersion();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +118,7 @@ class MyApp extends StatelessWidget {
                 ),
               ],
               child: MaterialApp(
-                useInheritedMediaQuery: true,
-                locale: DevicePreview.locale(context),
-                builder: DevicePreview.appBuilder,
+                title: 'Diva',
                 theme: ThemeData(
                   primarySwatch: Colors.blue,
                   appBarTheme: const AppBarTheme(
@@ -99,7 +129,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 debugShowCheckedModeBanner: false,
-                home: startWidget,
+                home: widget.startWidget,
               ));
         });
   }

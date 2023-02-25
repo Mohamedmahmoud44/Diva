@@ -6,10 +6,11 @@ class DioHelper {
   static init() {
     BaseOptions baseOptions = BaseOptions(
         baseUrl: 'https://divanice.com/rest/',
-        // receiveDataWhenStatusError: true,
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        // // receiveDataWhenStatusError: true,
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // });
+    );
     dio = Dio(baseOptions);
     dio.interceptors.add(
       LogInterceptor(

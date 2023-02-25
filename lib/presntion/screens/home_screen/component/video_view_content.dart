@@ -21,13 +21,22 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   ChewieController? chewieController;
 
   Future<void> loadVideo() async {
-    controller = VideoPlayerController.network(widget.data.source!);
+    controller = VideoPlayerController.network(widget.data.source!)
+      ..initialize().then((value) {
+        setState(() {
+          controller.play();
+        });
+      });
+    ;
     await Future.wait([controller.initialize()]);
     if (mounted) {
       setState(() {
         controller.initialize();
       });
     }
+    controller.addListener(() {
+      setState(() {});
+    });
 
     // .then((_) => setState(() {}));
     chewieController = ChewieController(
@@ -41,6 +50,13 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   void initState() {
     loadVideo();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    chewieController!.dispose();
+    super.dispose();
   }
 
   @override

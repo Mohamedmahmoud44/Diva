@@ -10,9 +10,10 @@ import 'post_general_information.dart';
 class ImagePost extends StatelessWidget {
   const ImagePost({
     Key? key,
-    required this.media,
+    required this.media, required this.data,
   }) : super(key: key);
   final FacebookData media;
+  final Data data;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class ImagePost extends StatelessWidget {
             children: [
               PostGeneralInformation(
                 media: media,
+                data: data,
               ),
               Stack(
                 children: [

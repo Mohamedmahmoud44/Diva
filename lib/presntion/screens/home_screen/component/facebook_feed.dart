@@ -74,14 +74,15 @@ class FacebookFeed extends StatelessWidget {
           SizedBox(
             height: height * 0.02,
           ),
-          data.fullPicture != ''
+          data.fullPicture != null
               ? Container(
                   height: height * 0.32,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: CachedNetworkImageProvider(data.fullPicture!),
-                          fit: BoxFit.cover)),
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: CachedNetworkImageProvider(data.fullPicture!),
+                        fit: BoxFit.cover),
+                  ),
                 )
               : Container(),
           SizedBox(

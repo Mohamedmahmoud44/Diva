@@ -11,8 +11,8 @@
     <application
         android:usesCleartextTraffic="true"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="diva_final_project"
+        android:icon="@mipmap/launcher_icon"
+        android:label="Diva"
         tools:targetApi="m">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

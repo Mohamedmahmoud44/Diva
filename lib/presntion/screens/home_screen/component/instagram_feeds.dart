@@ -3,52 +3,56 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/app_color.dart';
 import '../../../../core/app_style.dart';
-import '../../../../cubit/facebook_posts/facebook_cubit.dart';
-import '../../../../cubit/facebook_posts/facebook_states.dart';
+import '../../../../cubit/instagram_posts/instagram_cubit.dart';
+import '../../../../cubit/instagram_posts/instagram_states.dart';
 import '../../../widgets/components.dart';
-import '../../facebook_posts_screen/instagram.dart';
-import 'facebook_feed.dart';
+import '../../instagram_screen/instagram.dart';
+import 'insta_design.dart';
 
-class FacebookPosts extends StatelessWidget {
-  const FacebookPosts({
-    super.key,
-  });
+class InstagramFeeds extends StatelessWidget {
+  const InstagramFeeds({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FacebookPostsCubit, FacebookPostsStates>(
+    return BlocConsumer<InstagramPostsCubit, InstagramPostsStates>(
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
-        var cubit = FacebookPostsCubit.get(context);
-        if (cubit.fbData?.feed?.data! != null)
+        var cubit = InstagramPostsCubit.get(context);
+        if (cubit.instData?.businessDiscovery?.media?.data != null)
           return Container(
             decoration: BoxDecoration(
               color: AppColor.whiteColor,
               borderRadius: BorderRadius.circular(20),
             ),
             width: double.infinity,
-            margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 15),
+            margin: const EdgeInsets.only(
+                left: 15, right: 15, bottom: 10),
+            padding: const EdgeInsets.symmetric(
+                horizontal: 1, vertical: 15),
             child: Column(
               children: [
-                cubit.fbData!.feed!.data!=null? ListView.separated(
+                ListView.separated(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   separatorBuilder: (context, index) => Divider(),
                   itemCount: 2,
-                  itemBuilder: (context, index) => FacebookFeed(
-                    data: cubit.fbData!.feed!.data![index],
-                    fbData: cubit.fbData!,
+                  itemBuilder: (context, index) => InstaDesign(
+                    media: cubit.instData!.businessDiscovery!.media!
+                        .data![index],
                   ),
-                ):CircularProgressIndicator(),
+                ),
                 ElevatedButton(
                   onPressed: () {
-                    navigateTo(context, FaceBookPost());
+                    navigateTo(context, InstagramPost());
                   },
                   child: Text(
                     'عرض الكل',
-                    style: bodyStyle.copyWith(color: AppColor.whiteColor),
+                    style: bodyStyle.copyWith(
+                        color: AppColor.whiteColor),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColor.pinkColor,

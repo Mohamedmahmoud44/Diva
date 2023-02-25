@@ -6,7 +6,9 @@ import '../../../cubit/home_page/home_page_states.dart';
 import 'components/article_screen_view.dart';
 
 class ArticlesScreen extends StatelessWidget {
-  const ArticlesScreen({Key? key}) : super(key: key);
+  const ArticlesScreen({Key? key, this.isInHomeScreen = false})
+      : super(key: key);
+  final bool isInHomeScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,12 @@ class ArticlesScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: cubit?.data?.length != null
                   ? ListView.builder(
-                      itemCount: cubit!.data?.length,
+                      physics: isInHomeScreen
+                          ? NeverScrollableScrollPhysics()
+                          : ClampingScrollPhysics(),
+                      itemCount: isInHomeScreen ? 1 : cubit!.data?.length,
                       itemBuilder: (context, index) => ArticleScreenView(
-                        articleData: cubit.data![index],
+                        articleData: cubit!.data![index],
                       ),
                     )
                   : Center(
