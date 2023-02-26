@@ -12,17 +12,17 @@ class DioHelper {
         // });
     );
     dio = Dio(baseOptions);
-    dio.interceptors.add(
-      LogInterceptor(
-        request: true,
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: true,
-        responseBody: true,
-        error: true,
-        logPrint: print,
-      ),
-    );
+    // dio.interceptors.add(
+    //   LogInterceptor(
+    //     request: true,
+    //     requestHeader: true,
+    //     requestBody: true,
+    //     responseHeader: true,
+    //     responseBody: true,
+    //     error: true,
+    //     logPrint: print,
+    //   ),
+    // );
   }
 
   static Future<Response> getData({

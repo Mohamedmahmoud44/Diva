@@ -66,16 +66,16 @@ class _MyAppState extends State<MyApp> {
     newVersion.showUpdateDialog(
         context: context,
         versionStatus: status!,
-        dialogTitle: 'Update',
-        dismissButtonText: 'Skip',
-        dialogText: 'please update the app from ' +
+        dialogTitle: 'تحديث',
+        dismissButtonText: 'تخطي',
+        dialogText: 'يوجد تحديث جديد من ' +
             '${status.localVersion}' +
-            'to' +
+            'الي' +
             '${status.storeVersion}',
         dismissAction: () {
           SystemNavigator.pop();
         },
-        updateButtonText: 'Lets update');
+        updateButtonText: 'تحديث الأن');
     log('DEVISE:  ' + status.localVersion);
     log('DEVISE:  ' + status.storeVersion);
   }

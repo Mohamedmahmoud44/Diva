@@ -18,10 +18,10 @@ class CardView extends StatelessWidget {
           elevation: 5,
           child: Column(
             children: [
-              Image.asset(
-                aboutUsModel.img!,
-                fit: BoxFit.cover,
-              ),
+              // Image.asset(
+              //   aboutUsModel.img!,
+              //   fit: BoxFit.cover,
+              // ),
               Text(
                 aboutUsModel.title!,
                 style: bodyStyle2.copyWith(

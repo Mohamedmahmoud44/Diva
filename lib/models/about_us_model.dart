@@ -2,10 +2,9 @@ import '../core/image_root.dart';
 
 class AboutUsModel {
   String? title;
-  String? img;
   String? body;
 
-  AboutUsModel({this.title, this.img, this.body});
+  AboutUsModel({this.title,this.body});
 }
 
 List<AboutUsModel> aboutUsModeList = [
@@ -18,12 +17,10 @@ List<AboutUsModel> aboutUsModeList = [
 ];
 List<AboutUsModel> aboutUsModeListTwo = [
   AboutUsModel(
-      img: ImageRoot.aboutUsImgOne,
       title: 'قسم خاص بفساتين الزفاف',
       body:
           'موجود في ديفا فريق متخصص واقف معاكي يساعدك على إختيار الفستان المناسب لجسمك وشكلك ولون بشرتك عشان تقدري تتجنبي ظهور أي ديفوهات وتطلعي ملكة في ليلة العمر. متوفر في ديفا فساتين زفاف للمحجبات وغير المحجبات وفساتين زفاف بذيل وذيل متوسط أو بدون ديل. كل فساتين الزفاف في ديفا مستوردة. متوفر في ديفا فساتين زفاف لأشهر مصممي الأزياء.'),
   AboutUsModel(
-      img: ImageRoot.aboutUsImgTwo,
       title: 'برنامج تنظيف البشرة و الشعر',
       body:
           'موجود في ديفا فريق متخصص واقف معاكي يساعدك على إختيار الفستان المناسب لجسمك وشكلك ولون بشرتك عشان تقدري تتجنبي ظهور أي ديفوهات وتطلعي ملكة في ليلة العمر. متوفر في ديفا فساتين زفاف للمحجبات وغير المحجبات وفساتين زفاف بذيل وذيل متوسط أو بدون ديل. كل فساتين الزفاف في ديفا مستوردة. متوفر في ديفا فساتين زفاف لأشهر مصممي الأزياء.'),

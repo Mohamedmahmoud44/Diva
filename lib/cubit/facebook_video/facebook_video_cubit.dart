@@ -7,6 +7,7 @@ import 'package:diva_final_project/network/remote/meta_developer_dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../core/strings.dart';
 import '../../models/model/facebook_videos.dart';
 
 class FaceBookVideoCubit extends Cubit<FaceBookVideoStates> {
@@ -21,7 +22,7 @@ class FaceBookVideoCubit extends Cubit<FaceBookVideoStates> {
     apiServices
         .getData(
             url:
-                '272272949882404?fields=videos%7Bsource%7D&access_token=EAAVoclWUZCSABAOkPWiUNZC30rSJVnoZAIk40igEYNt1PK6pVZBRwMDo5569XnsJ8oL47ZCMIXWGeRQg3ZBTmgd4GRYSOsMmtQElvqIUcpOIlw7tI4rfSoPovPkpE0JZAtZCE2vJ9JxOrLi7Igd8zaMpTltSL68T31g6uYCv2mdQsgu86ZCjpNZALZCQkCKUm50QypEKy5xdKsHQAZDZD')
+                '272272949882404?fields=videos%7Bsource%7D&access_token=$apiKey')
         .then((value) {
       fbVideos = FBVideos.fromJson(JsonDecoder().convert(value.data));
       // log(value.data.toString());
