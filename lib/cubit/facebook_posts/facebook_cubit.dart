@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:diva_final_project/models/fb_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../dio.dart';
+import '../../core/strings.dart';
+import '../../models/model/facebook_data.dart';
+import '../../network/remote/meta_developer_dio.dart';
 import 'facebook_states.dart';
 
 class FacebookPostsCubit extends Cubit<FacebookPostsStates> {
@@ -20,7 +21,7 @@ class FacebookPostsCubit extends Cubit<FacebookPostsStates> {
       apiServices
           .getData(
               url:
-                  'https://graph.facebook.com/v15.0/272272949882404?fields=feed%7Bpermalink_url%2Cmessage%2Cfull_picture%2Ccreated_time%7D&access_token=EAAVoclWUZCSABAGNTqVBF2RdwVPJKFk9sNFYsXwrxx9SOykbBQGg3BIeXtQNg3nOmFLn3MB8OavKPjuWawUJiyOlFceidJreT24DviNNTLTGR3zQt9ndY80VaaZBFNLxudd1MPlDpoal6gPevAuWCrFp7MXlhH2ChuZBDM0eKyoAgKyW0JOZADwtgCZBjZCtzJjohGkuv29gZDZD')
+                  '272272949882404?fields=picture%2Cname%2Cfeed%7Bmessage%2Cfull_picture%2Ccreated_time%2Cpermalink_url%2Clikes.summary(true)%7D&access_token=$apiKey')
           .then((value) {
         fbData = FBData.fromJson(JsonDecoder().convert(value.data));
         print(value.data.toString());

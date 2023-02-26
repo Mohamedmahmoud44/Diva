@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../core/app_color.dart';
-import '../core/icon_root.dart';
-import '../presntion_layer/screens/communicate/communicate_screen.dart';
-import '../presntion_layer/screens/login/login_screen.dart';
-import '../presntion_layer/screens/notification_screen/notification_screen.dart';
+import '../presntion/screens/communication_screen/communicate_screen.dart';
+import '../presntion/screens/login_screen/login_screen.dart';
+import '../presntion/screens/notification_screen/notification_screen.dart';
 
 class DrawerModel {
   final String title;
-  final ImageIcon imageIcon;
+  Widget imageIcon;
   final Widget widget;
 
   DrawerModel(
@@ -17,35 +17,26 @@ class DrawerModel {
 
 List<DrawerModel> drawerList = [
   DrawerModel(
-    widget: const NotificationScreen(),
-    title: 'الاشعارات',
-    imageIcon: const ImageIcon(
-      AssetImage(IconRoot.notificationIcon),
-      color: AppColor.lightBlackColor,
-    ),
-  ),
+      widget: const NotificationScreen(),
+      title: 'الاشعارات',
+      imageIcon: Icon(
+        Icons.notifications,
+        color: AppColor.lightBlackColor,
+      )),
   DrawerModel(
-    widget: const CommunicateScreen(),
-    title: 'اتصل بنا',
-    imageIcon: const ImageIcon(
-      AssetImage(IconRoot.phoneIcon),
-      color: AppColor.lightBlackColor,
-    ),
-  ),
-  // DrawerModel(
-  //   widget: const ABoutUsScreen(),
-  //   title: 'من نحن ',
-  //   imageIcon: const ImageIcon(
-  //     AssetImage(IconRoot.infoIcon),
-  //     color: AppColor.lightBlackColor,
-  //   ),
-  // ),
+      widget: const CommunicateScreen(),
+      title: 'اتصل بنا',
+      imageIcon: Icon(
+        FontAwesomeIcons.phoneFlip,
+        size: 19,
+        color: AppColor.lightBlackColor,
+      )),
   DrawerModel(
-    widget: LoginScreen(),
-    title: 'تسجيل خروج',
-    imageIcon: const ImageIcon(
-      AssetImage(IconRoot.logOutIcon),
-      color: AppColor.lightBlackColor,
-    ),
-  ),
+      widget: LoginScreen(),
+      title: 'تسجيل خروج',
+      imageIcon: FaIcon(
+        FontAwesomeIcons.arrowLeft,
+        size: 16,
+        color: AppColor.lightBlackColor,
+      )),
 ];
